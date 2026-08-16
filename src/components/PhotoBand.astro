@@ -7,7 +7,8 @@ const {
   align = 'flex-end',
   parallax = 0,
   scrim = 'bottom',
-  brightness = '.8'
+  brightness = '.8',
+  split = 0
 } = Astro.props;
 
 const scrims = {
@@ -18,15 +19,21 @@ const scrims = {
 const imgStyle = image
   ? 'background-image:url(' + image + ');background-position:' + focal + ';filter:grayscale(1) contrast(1.06) brightness(' + brightness + ')'
   : '';
+
+/* split = the mockup's hero treatment: the photo occupies the right N% of the band and
+   fades out to the left, so the headline sits on flat colour instead of on the picture. */
+const splitStyle = split ? ';left:auto;right:-10px;width:' + split + '%' : '';
+const splitScrim = 'linear-gradient(90deg,#0B1113 0%,#0B1113 40%,rgba(11,17,19,.9) 50%,rgba(11,17,19,.4) 64%,rgba(11,17,19,0) 80%)';
 ---
 <div class="band" style={'height:' + height + ';align-items:' + align}>
   <div
     class={image ? 'band__img' : 'band__img band__img--placeholder'}
-    style={parallax ? imgStyle + ';inset:-20% 0;will-change:transform' : imgStyle}
+    style={(parallax ? imgStyle + ';inset:-20% 0;will-change:transform' : imgStyle) + splitStyle}
     data-par={parallax ? String(parallax) : null}
   ></div>
+  {split > 0 && <div class="band__scrim" style={'background:' + splitScrim}></div>}
   <div class="band__scrim" style={'background:' + (scrims[scrim] || scrims.bottom)}></div>
-  {scrim === 'bottom' && <div class="band__scrim" style="background:linear-gradient(95deg,rgba(11,17,19,.62) 0%,rgba(11,17,19,.1) 60%,rgba(11,17,19,0) 92%)"></div>}
+  {scrim === 'bottom' && split === 0 && <div class="band__scrim" style="background:linear-gradient(95deg,rgba(11,17,19,.62) 0%,rgba(11,17,19,.1) 60%,rgba(11,17,19,0) 92%)"></div>}
   <div class="band__body wrap" style="padding-bottom:26px">
     <slot />
   </div>
