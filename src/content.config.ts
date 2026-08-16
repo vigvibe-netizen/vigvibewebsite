@@ -11,7 +11,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     client: z.string(),
-    year: z.number(),
+    year: z.number().optional(),
     category: z.enum(categories),
     categoryLabel: z.string(),
     summary: z.string(),

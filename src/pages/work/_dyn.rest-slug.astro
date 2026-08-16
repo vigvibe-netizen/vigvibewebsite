@@ -28,14 +28,14 @@ const schema = {
   name: d.title,
   about: d.summary,
   creator: { '@type': 'Person', name: 'Scott Vigneault' },
-  dateCreated: String(d.year)
+  dateCreated: d.year ? String(d.year) : undefined
 };
 ---
 <Base title={d.title} description={d.seoDescription} image={d.cover} schema={schema} active="Work" overlayHeader={true}>
   <PhotoBand image={d.cover} focal="center 40%" height="400px">
     <p class="eyebrow" style="margin-bottom:14px">{d.categoryLabel}</p>
     <h1 style="font-weight:800;font-size:46px;line-height:1.08;color:#fff;max-width:22ch;margin-bottom:12px">{d.title}</h1>
-    <p style="font-size:16px;color:var(--text-soft)">{d.client} · {d.year}</p>
+    <p style="font-size:16px;color:var(--text-soft)">{d.year ? d.client + " · " + d.year : d.client}</p>
   </PhotoBand>
 
   <section class="wrap cs" style="padding-top:52px;padding-bottom:20px">
@@ -93,7 +93,7 @@ const schema = {
     </div>
   </section>
 
-  <CTABand image="" />
+  <CTABand image="/images/photo-band.jpg" />
 </Base>
 
 <style>

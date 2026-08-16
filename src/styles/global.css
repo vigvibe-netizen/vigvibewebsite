@@ -103,10 +103,14 @@ img { max-width: 100%; }
 .card--priority { background: var(--surface-warm); border-color: var(--line-warm); border-top-color: var(--orange); }
 
 .tag {
+  background: transparent;
   border: 1px solid var(--line-strong); border-radius: var(--pill);
-  padding: 9px 17px; font-size: 13px; font-weight: 500; color: #C3CBCC;
+  padding: 9px 17px; font-family: var(--font-body);
+  font-size: 13px; font-weight: 500; color: var(--text-soft);
+  cursor: pointer; transition: border-color 160ms var(--ease), color 160ms var(--ease);
 }
-.tag--on { background: var(--teal-light); border-color: var(--teal-light); color: var(--ink); font-weight: 600; }
+.tag:hover { border-color: var(--teal-light); color: #fff; }
+.tag--on, .tag--on:hover { background: var(--teal-light); border-color: var(--teal-light); color: var(--ink); font-weight: 600; }
 
 .mono-note { font: 600 9.5px var(--font-mono); letter-spacing: .09em; color: var(--text-faint); }
 

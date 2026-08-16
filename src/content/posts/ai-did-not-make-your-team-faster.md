@@ -4,7 +4,7 @@ type: field-note
 date: 2026-02-04
 readingTime: 3 min read
 excerpt: Every team I audit that credits AI for a speed gain made a process change in the same quarter. The process change did the work.
-cover: /images/five-myths-of-artwork-management.png
+cover: /images/benefits-of-creative-operations-management.png
 tags:
   - Field notes
   - AI workflows

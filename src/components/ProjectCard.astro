@@ -10,7 +10,7 @@ const href = '/work/' + d.category + '/' + project.id.split('/').pop();
   <div class="pc__body">
     <p class="pc__cat">{d.categoryLabel}</p>
     <h3 class="pc__title">{d.title}</h3>
-    <p class="pc__meta">{d.client} · {d.year}</p>
+    <p class="pc__meta">{d.year ? d.client + " · " + d.year : d.client}</p>
     {size === 'lg' && d.summary && <p class="pc__sum">{d.summary}</p>}
   </div>
 </a>
