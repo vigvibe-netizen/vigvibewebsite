@@ -1,0 +1,33 @@
+---
+/* One photo band = one CMS image field. Pass image: '' and it renders a flat panel. */
+const {
+  image = '',
+  focal = 'center 60%',
+  height = '420px',
+  align = 'flex-end',
+  parallax = 0,
+  scrim = 'bottom',
+  brightness = '.8'
+} = Astro.props;
+
+const scrims = {
+  bottom: 'linear-gradient(to bottom,rgba(11,17,19,.55) 0%,rgba(11,17,19,.05) 26%,rgba(11,17,19,.78) 78%,#0B1113 100%)',
+  full: 'linear-gradient(to bottom,#0B1113 0%,rgba(11,17,19,.12) 22%,rgba(11,17,19,.12) 62%,#0B1113 100%)',
+  left: 'linear-gradient(95deg,rgba(11,17,19,.9) 0%,rgba(11,17,19,.5) 58%,rgba(11,17,19,.2) 100%)'
+};
+const imgStyle = image
+  ? 'background-image:url(' + image + ');background-position:' + focal + ';filter:grayscale(1) contrast(1.06) brightness(' + brightness + ')'
+  : '';
+---
+<div class="band" style={'height:' + height + ';align-items:' + align}>
+  <div
+    class={image ? 'band__img' : 'band__img band__img--placeholder'}
+    style={parallax ? imgStyle + ';inset:-20% 0;will-change:transform' : imgStyle}
+    data-par={parallax ? String(parallax) : null}
+  ></div>
+  <div class="band__scrim" style={'background:' + (scrims[scrim] || scrims.bottom)}></div>
+  {scrim === 'bottom' && <div class="band__scrim" style="background:linear-gradient(95deg,rgba(11,17,19,.62) 0%,rgba(11,17,19,.1) 60%,rgba(11,17,19,0) 92%)"></div>}
+  <div class="band__body wrap" style="padding-bottom:26px">
+    <slot />
+  </div>
+</div>

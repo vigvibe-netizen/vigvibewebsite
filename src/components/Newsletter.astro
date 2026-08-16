@@ -1,0 +1,46 @@
+---
+const {
+  heading = 'Get it in your inbox, twice a month.',
+  body = 'One workflow fix, one AI tool worth the time, one thing I got wrong. No pitch.',
+  cta = 'Subscribe'
+} = Astro.props;
+---
+<section class="wrap" style="padding-top:44px;padding-bottom:56px">
+  <div class="nl">
+    <div>
+      <h2 style="font-weight:700;font-size:28px;color:#fff;margin-bottom:10px">{heading}</h2>
+      <p style="font-size:16px;line-height:1.55;color:var(--text-soft)">{body}</p>
+    </div>
+    <form class="nl__form" action="https://vigvibe.com/newsletter" method="post" data-newsletter>
+      <input type="email" name="email" placeholder="you@company.com" required aria-label="Email address" />
+      <button class="btn btn--action" type="submit" style="white-space:nowrap">{cta}</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .nl {
+    display: flex; align-items: center; justify-content: space-between; gap: 48px;
+    border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: 40px 44px; background: var(--surface);
+  }
+  .nl__form { display: flex; gap: 10px; flex: none; }
+  .nl__form input { width: 250px; border-radius: var(--pill); padding: 14px 20px; }
+  @media (max-width: 900px) {
+    .nl { flex-direction: column; align-items: stretch; gap: 24px; padding: 28px 22px; }
+    .nl__form { flex-direction: column; }
+    .nl__form input { width: 100%; }
+  }
+</style>
+
+<script is:inline>
+  // Newsletter provider is not wired yet — swap the action for your ESP endpoint
+  // (Buttondown, Kit, Mailchimp) or a Netlify Function. Until then it opens an email.
+  document.querySelectorAll('[data-newsletter]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = form.querySelector('input[name=email]').value;
+      window.location.href = 'mailto:hello@vigvibe.com?subject=Newsletter%20signup&body=' + encodeURIComponent(email);
+    });
+  });
+</script>

@@ -1,0 +1,24 @@
+---
+import PhotoBand from './PhotoBand.astro';
+const {
+  heading = 'Got something stuck? Send it over.',
+  body = 'One project, one email. I will tell you the cleanest next move, free.',
+  cta = 'Tell me what you need',
+  href = '/contact',
+  image = ''
+} = Astro.props;
+---
+<PhotoBand image={image} focal="center 20%" height="420px" align="center" parallax={0.18} scrim="full" brightness=".74">
+  <div class="cta">
+    <div>
+      <h2 style="font-weight:700;font-size:34px;color:#fff;margin-bottom:10px">{heading}</h2>
+      <p style="font-size:18px;line-height:1.5;color:var(--text-soft)">{body}</p>
+    </div>
+    <a class="btn btn--action" href={href} style="font-size:17px;padding:16px 28px;white-space:nowrap">{cta}</a>
+  </div>
+</PhotoBand>
+
+<style>
+  .cta { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+  @media (max-width: 900px) { .cta { flex-direction: column; align-items: flex-start; gap: 24px; } }
+</style>

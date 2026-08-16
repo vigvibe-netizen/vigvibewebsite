@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import CTABand from '../components/CTABand.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const featured = (await getCollection('projects'))
+  .filter(p => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const stats = [
+  { figure: '20+', label: 'years of creative leadership' },
+  { figure: '15K+', label: 'leads generated per campaign series' },
+  { figure: '600K', label: 'video views' },
+  { figure: '140%', label: 'workflow & cycle-time improvement', accent: true }
+];
+
+const services = [
+  { title: 'Campaign design', href: '/services/marketing-design-contractor', cta: 'Build campaign assets →',
+    body: 'Assets, systems, and brand consistency across every marketing channel — digital ads, emails, landing pages, event materials, sales sheets, and social graphics.' },
+  { title: 'Deck rescue', href: '/services/presentation-designer', cta: 'Fix my deck →',
+    body: 'Clear structure, stronger visual hierarchy, and purposeful design for sales decks, executive presentations, webinars, investor pitches, and conference keynotes.' },
+  { title: 'Creative ops', href: '/services/creative-operations-consultant', cta: 'Find the bottleneck →', priority: true,
+    body: 'Intake systems, better briefs, cleaner approvals, and workflow design so your team stops losing time to unclear requests, rework, and late-stage revisions.' },
+  { title: 'AI workflows', href: '/services/ai-workflow-consultant', cta: 'Use AI better →',
+    body: 'Practical AI integration for creative and marketing teams — prompts, templates, handoffs, and repeatable workflows that reduce manual production time.' }
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'VigVibe',
+  founder: { '@type': 'Person', name: 'Scott Vigneault', jobTitle: 'Creative Director' },
+  description: 'Freelance creative direction, presentation design, and creative operations for B2B marketing teams.',
+  areaServed: 'United States',
+  url: 'https://vigvibe.com'
+};
+---
+<Base
+  title="Creative direction, presentation design & creative ops"
+  description="Fewer revisions. Fewer meetings. Better work, sooner. Twenty years of in-house creative leadership, available one project at a time."
+  schema={schema}
+  overlayHeader={true}
+>
+  <PhotoBand image="/images/hero-studio.jpg" focal="52% 0%" height="680px" scrim="bottom" brightness="1">
+    <div style="max-width:660px;padding-bottom:30px">
+      <p class="eyebrow" style="margin-bottom:20px">Design &amp; creative direction · Boston, remote</p>
+      <h1 style="font-weight:800;font-size:64px;line-height:1.04;letter-spacing:-.02em;color:#fff;max-width:17ch;margin-bottom:24px">Fewer revisions. Fewer meetings. Better work, sooner.</h1>
+      <p style="font-size:19px;line-height:1.55;color:var(--text-soft);max-width:54ch;margin-bottom:34px">Twenty years of in-house creative leadership, available one project at a time. Brand and campaign design, decks that hold a room, and the workflow fixes that keep them coming out on schedule.</p>
+      <div class="row">
+        <a class="btn btn--action" href="/contact">Tell me what you need</a>
+        <a class="btn btn--ghost" href="/work">See the work</a>
+      </div>
+    </div>
+  </PhotoBand>
+
+  <section class="wrap" style="padding-top:8px;padding-bottom:76px">
+    <div class="stats">
+      {stats.map(s => (
+        <div>
+          <div class="stats__fig" style={s.accent ? 'color:var(--orange)' : 'color:var(--teal-light)'}>{s.figure}</div>
+          <div class="stats__label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <p class="eyebrow" style="margin:60px 0 22px">What I do</p>
+    <div class="grid-4">
+      {services.map(s => (
+        <a class={s.priority ? 'card card--priority svc' : 'card svc'} href={s.href}>
+          <h3 style="font-weight:700;font-size:20px;margin-bottom:12px">{s.title}</h3>
+          <p style="font-size:14px;line-height:1.6;color:var(--text-mute);flex:1">{s.body}</p>
+          <div class="svc__cta" style={s.priority ? 'color:var(--orange)' : 'color:var(--teal-light)'}>{s.cta}</div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <PhotoBand image="/images/statement-band.jpg" focal="center 75%" height="520px" align="center" parallax={0.22} scrim="full" brightness=".78">
+    <p style="font-family:var(--font-display);font-weight:700;font-size:40px;line-height:1.22;color:#fff;max-width:24ch;margin-bottom:18px">Your team may not be slow. Your workflow may be leaking time.</p>
+    <p style="font-size:17px;line-height:1.6;color:var(--text-soft);max-width:52ch">A request comes in half-formed. Feedback shows up in three places. Someone edits the wrong version. I find those leaks and fix the ones that matter first.</p>
+  </PhotoBand>
+
+  <section class="wrap" style="padding-top:76px;padding-bottom:76px">
+    <div class="sec__head">
+      <h2 style="font-weight:700;font-size:34px">Selected work</h2>
+      <a href="/work" style="font-size:14px;font-weight:600">View all work →</a>
+    </div>
+    <p style="font-size:16px;line-height:1.6;color:var(--text-mute);max-width:70ch;margin-bottom:36px">A few examples of campaign systems, presentation design, creative direction, and workflow improvement across B2B marketing, events, product launches, and sales enablement.</p>
+    <div class="grid-3">
+      {featured.map(p => <ProjectCard project={p} size="lg" />)}
+    </div>
+  </section>
+
+  <CTABand image="/images/cta-band.jpg" />
+</Base>
+
+<style>
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    padding: 30px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  }
+  .stats__fig { font-family: var(--font-display); font-weight: 800; font-size: 34px; line-height: 1; }
+  .stats__label { margin-top: 6px; font-size: 13px; color: var(--text-dim); }
+  .svc { display: flex; flex-direction: column; color: inherit; transition: border-color 160ms var(--ease); }
+  .svc:hover { border-color: var(--teal-light); }
+  .svc__cta { margin-top: 20px; font-size: 13px; font-weight: 600; }
+  .sec__head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; gap: 20px; }
+  @media (max-width: 900px) {
+    .stats { grid-template-columns: 1fr 1fr; gap: 20px; }
+    h1 { font-size: 34px !important; }
+  }
+</style>

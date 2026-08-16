@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import PhotoBand from '../components/PhotoBand.astro';
+import CTABand from '../components/CTABand.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Scott Vigneault',
+  jobTitle: 'Creative Director',
+  url: 'https://vigvibe.com/about',
+  worksFor: { '@type': 'Organization', name: 'VigVibe LLC' },
+  knowsAbout: ['Presentation design', 'Creative operations', 'Campaign design', 'Brand identity', 'AI workflows'],
+  address: { '@type': 'PostalAddress', addressRegion: 'MA', addressCountry: 'US' }
+};
+---
+<Base
+  title="About Scott Vigneault"
+  description="Twenty years leading in-house creative for B2B marketing teams. Now taking creative direction, presentation design, and creative-ops work one project at a time."
+  active="About"
+  schema={schema}
+  overlayHeader={true}
+>
+  <PhotoBand image="/images/about-header.jpg" focal="center 35%" height="360px">
+    <p class="eyebrow" style="margin-bottom:14px">Boston · remote across US time zones</p>
+    <h1 style="font-weight:800;font-size:44px;line-height:1.08;color:#fff;margin-bottom:12px">Twenty years inside marketing teams</h1>
+    <p style="font-size:16px;line-height:1.6;color:var(--text-soft);max-width:62ch">I have been the person the deck lands on at 6pm, the one who rebuilt the intake form, and the one who had to explain the timeline to an executive. That is the perspective you are hiring.</p>
+  </PhotoBand>
+
+  <section class="wrap about" style="padding-top:52px;padding-bottom:20px">
+    <div class="prose" style="max-width:70ch">
+      <p>Most of my career was in-house: creative director for a global software company, running campaign design, brand, presentations, events, and the workflow that held them together. That means I have shipped under real constraints — a launch date that will not move, a brand system four teams need to use, a keynote written the night before.</p>
+      <p>It also means I have seen where the time actually goes. Not in design. In half-formed requests, feedback in three places, and nobody named as the approver.</p>
+      <h2>How projects run</h2>
+      <p>Fixed scope, quoted before work starts, no retainer required. Most projects are three days to about four weeks. You get the working files and something your team can keep running without me.</p>
+      <h2>What I will tell you for free</h2>
+      <p>Describe the project in two sentences and I will tell you what I think it actually is and what it would take. If it is not a fit, I will say so and point you somewhere better.</p>
+    </div>
+    <aside class="about__side">
+      <div class="imgslot" style="aspect-ratio:4/5">
+        <img src="/images/scott-vigneault-portrait.png" alt="Scott Vigneault" />
+      </div>
+      <div>
+        <div class="eyebrow" style="font-size:10.5px;margin-bottom:10px">Worked with</div>
+        <p style="font-size:14.5px;line-height:1.8;color:var(--text-mute)">Loftware · Morningstar · Deutsche Bank · Graham Machinery Group</p>
+      </div>
+      <div>
+        <div class="eyebrow" style="font-size:10.5px;margin-bottom:10px">Elsewhere</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:600">
+          <a href="https://www.linkedin.com/">LinkedIn →</a>
+          <a href="/downloads">Free downloads →</a>
+          <a href="/answers">Questions I get asked →</a>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <CTABand image="/images/cta-band.jpg" />
+</Base>
+
+<style>
+  .about { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
+  .about__side { display: flex; flex-direction: column; gap: 28px; }
+  @media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 32px; } }
+</style>

@@ -1,0 +1,89 @@
+---
+const needs = [
+  'a deck fixed by Friday',
+  'a campaign built out',
+  'a logo or brand refresh',
+  'a website designed',
+  'event or booth graphics',
+  'our workflow untangled',
+  'something else'
+];
+---
+<div class="need" data-need>
+  <div class="need__head">
+    <span style="font-family:var(--font-display);font-weight:700;font-size:15px;color:#fff">I need…</span>
+  </div>
+  <div class="need__list" data-need-list>
+    {needs.map((n, i) => (
+      <button type="button" class={i === needs.length - 1 ? 'need__item need__item--other' : 'need__item'} data-need-pick={n}>{n}</button>
+    ))}
+  </div>
+  <form class="need__form" data-need-form hidden>
+    <div class="need__back"><button type="button" data-need-back>←</button> <span data-need-label></span></div>
+    <div>
+      <label for="need-what">What is it, in two sentences?</label>
+      <textarea id="need-what" name="what" rows="4" required placeholder="Q3 product launch — need ads, a landing page, and an email sequence off one report. Kickoff is in two weeks."></textarea>
+    </div>
+    <div>
+      <label for="need-email">Where do I send the answer?</label>
+      <input id="need-email" type="email" name="email" required placeholder="you@company.com" />
+    </div>
+    <button class="btn btn--action" type="submit" style="justify-content:center">Send it over</button>
+    <p style="font-size:12px;line-height:1.5;color:var(--text-faint);text-align:center">No call required. I reply within one business day.</p>
+  </form>
+  <div class="need__done" data-need-done hidden>
+    <div class="need__check">✓</div>
+    <h3 style="font-weight:700;font-size:21px">Got it. It is in my inbox.</h3>
+    <p style="font-size:14.5px;line-height:1.6;color:var(--text-mute)">I will read it today and reply within one business day with what I think the project actually is and what it would take.</p>
+    <a href="/work" class="btn btn--ghost" style="font-size:14px">See the work while you wait</a>
+  </div>
+</div>
+
+<style>
+  .need { background: var(--surface); border: 1px solid #33403F; border-radius: var(--r-lg); overflow: hidden; max-width: 460px; }
+  .need__head { padding: 14px 18px; background: var(--ink); border-bottom: 1px solid var(--line); }
+  .need__list { padding: 10px 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+  .need__item {
+    text-align: left; padding: 12px; border: none; background: none;
+    border-radius: var(--r-sm); font-family: var(--font-body);
+    font-size: 14px; font-weight: 500; color: #C3CBCC; cursor: pointer;
+    transition: background 140ms var(--ease), color 140ms var(--ease);
+  }
+  .need__item:hover { background: #222E31; color: var(--text); }
+  .need__item--other { color: var(--orange); font-weight: 600; border-top: 1px solid var(--line); margin-top: 6px; padding-top: 14px; border-radius: 0; }
+  .need__form { padding: 18px; display: flex; flex-direction: column; gap: 16px; }
+  .need__back { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 15px; color: #fff; }
+  .need__back button { background: none; border: none; color: var(--text-dim); font-size: 16px; cursor: pointer; }
+  .need__done { padding: 32px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; border-top: 3px solid var(--teal); }
+  .need__check { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center; color: var(--teal-light); font-size: 20px; }
+</style>
+
+<script is:inline>
+  document.querySelectorAll('[data-need]').forEach(function (root) {
+    var list = root.querySelector('[data-need-list]');
+    var form = root.querySelector('[data-need-form]');
+    var done = root.querySelector('[data-need-done]');
+    var label = root.querySelector('[data-need-label]');
+    var picked = '';
+    root.querySelectorAll('[data-need-pick]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        picked = btn.getAttribute('data-need-pick');
+        label.textContent = picked.charAt(0).toUpperCase() + picked.slice(1);
+        list.hidden = true; form.hidden = false;
+      });
+    });
+    root.querySelector('[data-need-back]').addEventListener('click', function () {
+      form.hidden = true; list.hidden = false;
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var what = form.querySelector('[name=what]').value;
+      var email = form.querySelector('[name=email]').value;
+      var body = 'I need ' + picked + '.' + '\n\n' + what + '\n\nReply to: ' + email;
+      window.location.href = 'mailto:hello@vigvibe.com'
+        + '?subject=' + encodeURIComponent('I need ' + picked)
+        + '&body=' + encodeURIComponent(body);
+      form.hidden = true; done.hidden = false;
+    });
+  });
+</script>

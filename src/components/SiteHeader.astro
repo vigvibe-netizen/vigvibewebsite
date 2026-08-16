@@ -1,0 +1,44 @@
+---
+const { active = '', overlay = false } = Astro.props;
+const nav = [
+  { label: 'Work', href: '/work' },
+  { label: 'Services', href: '/services' },
+  { label: 'Downloads', href: '/downloads' },
+  { label: 'About', href: '/about' }
+];
+---
+<header class={overlay ? 'hd hd--overlay' : 'hd'}>
+  <a href="/" class="hd__logo">
+    <img src="/assets/vigvibe-logo-white.svg" alt="VigVibe" width="150" height="54" />
+  </a>
+  <nav class="hd__nav">
+    {nav.map(item => (
+      <a href={item.href} class={active === item.label ? 'hd__link hd__link--on' : 'hd__link'}>{item.label}</a>
+    ))}
+    <a href="/book" class="btn btn--teal">Book a call</a>
+  </nav>
+</header>
+
+<style>
+  .hd {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px var(--pad-x);
+    background: rgba(11,17,19,.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(43,54,57,.8);
+  }
+  .hd--overlay { background: transparent; border-bottom: none; backdrop-filter: none; margin-bottom: -86px; }
+  .hd__logo { display: block; line-height: 0; }
+  .hd__logo img { height: 54px; width: auto; display: block; }
+  .hd__nav { display: flex; align-items: center; gap: 26px; }
+  .hd__link { font-size: 14px; font-weight: 500; color: #C3CBCC; }
+  .hd__link:hover { color: #fff; }
+  .hd__link--on { color: #fff; font-weight: 600; border-bottom: 2px solid var(--teal-light); padding-bottom: 3px; }
+  @media (max-width: 900px) {
+    .hd__logo img { height: 42px; }
+    .hd__nav { gap: 14px; }
+    .hd__nav .btn--teal { display: none; }
+    .hd__link { font-size: 13px; }
+  }
+</style>

@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const [latest, ...rest] = posts;
+const typeLabel = { 'field-note': 'Field note', playbook: 'Playbook', answer: 'Answer' };
+const fmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const tags = ['All', 'Field notes', 'Playbooks', 'Answers', 'AI workflows', 'Presentation design'];
+---
+<Base
+  title="This week in AI…"
+  description="Notes on creative workflow, presentation design, and where AI actually earns its keep. Twice a month, from twenty years inside marketing teams."
+  overlayHeader={true}
+>
+  <PageHeader
+    title="This week in AI…"
+    intro="Notes on creative workflow, presentation design, and where AI actually earns its keep. Twice a month, from twenty years inside marketing teams."
+    image="/images/blog-header.jpg"
+    focal="center 30%"
+  />
+
+  <section class="wrap" style="padding-top:28px">
+    <div class="chips" style="padding-bottom:24px;border-bottom:1px solid var(--line)">
+      {tags.map((t, i) => <span class={i === 0 ? 'tag tag--on' : 'tag'}>{t}</span>)}
+    </div>
+  </section>
+
+  {latest && (
+    <section class="wrap" style="padding-top:30px">
+      <a class="card card--priority feat" href={'/blog/' + latest.id}>
+        <div>
+          <div class="row" style="gap:10px;margin-bottom:16px">
+            <span class="eyebrow eyebrow--orange">Latest · {typeLabel[latest.data.type]}</span>
+            <span style="font-size:12.5px;color:var(--text-dim)">{latest.data.readingTime} · {fmt(latest.data.date)}</span>
+          </div>
+          <h2 style="font-weight:800;font-size:32px;line-height:1.15;color:var(--text-bright);margin-bottom:14px">{latest.data.title}</h2>
+          <p style="font-size:16px;line-height:1.65;color:var(--text-mute);margin-bottom:20px">{latest.data.excerpt}</p>
+          <span style="font-size:14px;font-weight:600;color:var(--teal-light)">Read it →</span>
+        </div>
+        <div class="imgslot" style="min-height:210px">
+          {latest.data.cover ? <img src={latest.data.cover} alt={latest.data.title} /> : 'Post image'}
+        </div>
+      </a>
+    </section>
+  )}
+
+  <section class="wrap" style="padding-top:34px">
+    <div class="grid-3" style="gap:22px">
+      {rest.map(p => (
+        <a class="pcard" href={'/blog/' + p.id}>
+          <div class="imgslot" style="height:150px;border-radius:16px 16px 0 0;border-bottom:1px solid var(--line)">
+            {p.data.cover ? <img src={p.data.cover} alt={p.data.title} loading="lazy" /> : 'Post image'}
+          </div>
+          <div class="pcard__body">
+            <div class="eyebrow" style="font-size:10.5px;margin-bottom:10px">{typeLabel[p.data.type]}</div>
+            <h3 style="font-weight:700;font-size:19px;line-height:1.25;margin-bottom:10px">{p.data.title}</h3>
+            <p style="font-size:14px;line-height:1.6;color:var(--text-mute);flex:1">{p.data.excerpt}</p>
+            <div style="margin-top:16px;font-size:12.5px;color:var(--text-dim)">{p.data.readingTime} · {fmt(p.data.date)}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <Newsletter />
+</Base>
+
+<style>
+  .feat { display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; padding: 32px 34px; color: inherit; }
+  .pcard {
+    display: flex; flex-direction: column; color: inherit;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; overflow: hidden; transition: border-color 160ms var(--ease);
+  }
+  .pcard:hover { border-color: var(--teal-light); }
+  .pcard__body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+  @media (max-width: 900px) { .feat { grid-template-columns: 1fr; gap: 22px; padding: 24px 20px; } }
+</style>

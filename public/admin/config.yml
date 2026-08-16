@@ -1,0 +1,193 @@
+# Decap CMS — edit content in the browser at /admin
+# Auth: Netlify Identity + Git Gateway (turn both on in the Netlify dashboard),
+# or swap backend.name to "github" with an OAuth app if you prefer direct GitHub login.
+
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+site_url: https://vigvibe.com
+display_url: https://vigvibe.com
+logo_url: https://vigvibe.com/assets/vigvibe-logo-white.svg
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: projects
+    label: Work / Projects
+    label_singular: Project
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} — {{client}} {{year}}"
+    sortable_fields: [order, year, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: client, label: Client, widget: string }
+      - { name: year, label: Year, widget: number, value_type: int }
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - { label: Campaigns, value: campaigns }
+          - { label: Design layout, value: design-layout }
+          - { label: Brand identity, value: brand-identity }
+          - { label: Logos, value: logos }
+          - { label: Infographics, value: infographics }
+          - { label: Presentations, value: presentations }
+          - { label: Websites, value: websites }
+          - { label: Motion, value: motion }
+          - { label: Events, value: events }
+          - { label: AI illustration, value: ai-illustration }
+      - { name: categoryLabel, label: Category label (shown on cards), widget: string }
+      - { name: summary, label: One-line summary, widget: text }
+      - { name: cover, label: Cover image, widget: image, required: false }
+      - { name: featured, label: Show on the home page, widget: boolean, default: false }
+      - { name: order, label: Sort order, widget: number, value_type: int, default: 99 }
+      - { name: role, label: Role, widget: string, required: false }
+      - { name: deliverables, label: Deliverables, widget: list, required: false, field: { name: item, label: Item, widget: string } }
+      - name: results
+        label: Results
+        widget: list
+        required: false
+        fields:
+          - { name: figure, label: Figure, widget: string }
+          - { name: label, label: Label, widget: string }
+      - name: gallery
+        label: Gallery
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: Image, widget: image }
+          - { name: caption, label: Caption, widget: string, required: false }
+      - { name: seoDescription, label: SEO description, widget: text, hint: "Under 160 characters." }
+      - { name: body, label: Case study, widget: markdown }
+
+  - name: posts
+    label: Blog — This week in AI…
+    label_singular: Post
+    folder: src/content/posts
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{type}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - name: type
+        label: Post type
+        widget: select
+        options:
+          - { label: "Field note (~400 words)", value: field-note }
+          - { label: "Playbook (numbered, HowTo schema)", value: playbook }
+          - { label: "Answer (FAQPage schema)", value: answer }
+      - { name: date, label: Date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { name: readingTime, label: Reading time, widget: string, default: "4 min read" }
+      - { name: excerpt, label: Excerpt, widget: text }
+      - { name: shortAnswer, label: "Short answer / In short block", widget: text, required: false, hint: "Answer and playbook posts. This is the block AI assistants quote." }
+      - { name: cover, label: Cover image, widget: image, required: false }
+      - { name: tags, label: Tags, widget: list, required: false, field: { name: tag, label: Tag, widget: string } }
+      - name: steps
+        label: "Playbook steps"
+        widget: list
+        required: false
+        fields:
+          - { name: title, label: Step title, widget: string }
+          - { name: body, label: Step body, widget: text }
+      - name: faqs
+        label: "Related questions (FAQPage schema)"
+        widget: list
+        required: false
+        fields:
+          - { name: q, label: Question, widget: string }
+          - { name: a, label: Answer, widget: text }
+      - { name: draft, label: Draft, widget: boolean, default: false }
+      - { name: seoDescription, label: SEO description, widget: text }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: answers
+    label: Answers hub
+    label_singular: Answer
+    folder: src/content/answers
+    create: true
+    slug: "{{slug}}"
+    summary: "{{question}}"
+    sortable_fields: [order, question]
+    fields:
+      - { name: question, label: Question, widget: string }
+      - name: category
+        label: Category
+        widget: select
+        options: [Hiring, Workflow, AI, Working together]
+      - { name: answer, label: "Answer (self-contained, 2–4 sentences)", widget: text }
+      - { name: linkHref, label: Link to the long version, widget: string, required: false }
+      - { name: linkLabel, label: Link label, widget: string, default: "Read the full answer →" }
+      - { name: priority, label: Highlight in orange, widget: boolean, default: false }
+      - { name: order, label: Sort order, widget: number, value_type: int, default: 99 }
+
+  - name: downloads
+    label: Downloads
+    label_singular: Download
+    folder: src/content/downloads
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{platform}}"
+    sortable_fields: [order, title, downloadCount]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: platform, label: Platform, widget: select, options: [Claude, ChatGPT, Gemini] }
+      - { name: type, label: "Type (Claude Skill, Custom GPT, Gem, Prompt pack…)", widget: string }
+      - { name: fileLabel, label: "File label (.zip · 8 KB)", widget: string, default: ".zip" }
+      - { name: description, label: Description, widget: text }
+      - { name: tags, label: Tags, widget: list, required: false, field: { name: tag, label: Tag, widget: string } }
+      - { name: contents, label: "Contents (featured card only)", widget: list, required: false, field: { name: line, label: Line, widget: string } }
+      - { name: file, label: File, widget: file, required: false }
+      - { name: externalUrl, label: "External URL (GPTs and Gems)", widget: string, required: false }
+      - { name: downloadCount, label: Download count, widget: number, value_type: int, default: 0 }
+      - { name: featured, label: Feature at the top, widget: boolean, default: false }
+      - { name: order, label: Sort order, widget: number, value_type: int, default: 99 }
+
+  - name: services
+    label: Services / Landing pages
+    label_singular: Service page
+    folder: src/content/services
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: [order, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: navLabel, label: Short nav label, widget: string }
+      - { name: eyebrow, label: Eyebrow, widget: string, required: false }
+      - { name: h1, label: H1, widget: string }
+      - { name: intro, label: Intro, widget: text }
+      - { name: header, label: Header photo, widget: image, required: false }
+      - { name: priority, label: "Priority (orange treatment)", widget: boolean, default: false }
+      - name: whatYouGet
+        label: What you get
+        widget: list
+        required: false
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: body, label: Body, widget: text }
+      - name: process
+        label: How it runs
+        widget: list
+        required: false
+        fields:
+          - { name: title, label: Step title, widget: string }
+          - { name: body, label: Step body, widget: text }
+      - name: faqs
+        label: Common questions
+        widget: list
+        required: false
+        fields:
+          - { name: q, label: Question, widget: string }
+          - { name: a, label: Answer, widget: text }
+      - { name: priceNote, label: Pricing note, widget: string, required: false }
+      - { name: order, label: Sort order, widget: number, value_type: int, default: 99 }
+      - { name: seoTitle, label: SEO title, widget: string }
+      - { name: seoDescription, label: SEO description, widget: text }
+      - { name: body, label: "Extra copy (optional)", widget: markdown, required: false }

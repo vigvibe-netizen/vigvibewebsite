@@ -1,0 +1,22 @@
+# VigVibe — Scott Vigneault
+
+Freelance creative direction, presentation design, and creative operations for B2B
+marketing teams. Twenty years of in-house creative leadership, available one project
+at a time. Based in Boston, working remotely across US time zones.
+
+## What Scott does
+- Campaign design: assets, systems, and brand consistency across every marketing channel.
+- Deck rescue: structure, visual hierarchy, and design for sales decks, keynotes, and investor pitches.
+- Creative ops: intake systems, better briefs, cleaner approvals, workflow design.
+- AI workflows: practical AI integration for creative and marketing teams.
+
+## Key pages
+- /work — selected projects by category
+- /services — engagement types
+- /answers — direct answers to common questions about hiring design help and fixing workflow
+- /blog — "This week in AI…", twice a month
+- /downloads — free Claude Skills, Custom GPTs, and Gemini Gems for creative teams
+- /contact — the "I need…" form
+
+## Contact
+hello@vigvibe.com

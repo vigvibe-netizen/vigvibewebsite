@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import NeedForm from '../components/NeedForm.astro';
+---
+<Base
+  title="Tell me what you need"
+  description="Describe the project in two sentences. I will tell you what it actually is, what it would take, and whether I am the right person."
+>
+  <section class="wrap contact">
+    <div>
+      <p class="eyebrow" style="margin-bottom:18px">One project, one email</p>
+      <h1 style="font-weight:800;font-size:44px;line-height:1.08;margin-bottom:18px">Got something stuck? Send it over.</h1>
+      <p style="font-size:18px;line-height:1.6;color:var(--text-mute);max-width:52ch;margin-bottom:28px">Pick the closest thing, write two sentences, and I will tell you the cleanest next move — free, within one business day.</p>
+      <div style="border-top:1px solid var(--line);padding-top:24px;display:flex;flex-direction:column;gap:18px;max-width:52ch">
+        <div>
+          <div class="eyebrow" style="font-size:10.5px;margin-bottom:8px">Prefer email</div>
+          <p style="font-size:15px;color:var(--text-mute)"><a href="mailto:hello@vigvibe.com">hello@vigvibe.com</a></p>
+        </div>
+        <div>
+          <div class="eyebrow" style="font-size:10.5px;margin-bottom:8px">Prefer a call</div>
+          <p style="font-size:15px;color:var(--text-mute)"><a href="/book">Book 20 minutes →</a></p>
+        </div>
+        <div>
+          <div class="eyebrow" style="font-size:10.5px;margin-bottom:8px">Where I work</div>
+          <p style="font-size:15px;color:var(--text-mute)">Boston, and remote across US time zones.</p>
+        </div>
+      </div>
+    </div>
+    <NeedForm />
+  </section>
+</Base>
+
+<style>
+  .contact {
+    display: grid; grid-template-columns: minmax(0, 1fr) 460px; gap: 56px;
+    align-items: start; padding-top: 64px; padding-bottom: 80px;
+  }
+  @media (max-width: 900px) { .contact { grid-template-columns: 1fr; gap: 36px; padding-top: 40px; } }
+</style>

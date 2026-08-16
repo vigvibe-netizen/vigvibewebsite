@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import PhotoBand from '../../components/PhotoBand.astro';
+import CTABand from '../../components/CTABand.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.data.category + '/' + project.id },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+
+const related = (await getCollection('projects'))
+  .filter(p => p.id !== project.id)
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: d.title,
+  about: d.summary,
+  creator: { '@type': 'Person', name: 'Scott Vigneault' },
+  dateCreated: String(d.year)
+};
+---
+<Base title={d.title} description={d.seoDescription} image={d.cover} schema={schema} active="Work" overlayHeader={true}>
+  <PhotoBand image={d.cover} focal="center 40%" height="400px">
+    <p class="eyebrow" style="margin-bottom:14px">{d.categoryLabel}</p>
+    <h1 style="font-weight:800;font-size:46px;line-height:1.08;color:#fff;max-width:22ch;margin-bottom:12px">{d.title}</h1>
+    <p style="font-size:16px;color:var(--text-soft)">{d.client} · {d.year}</p>
+  </PhotoBand>
+
+  <section class="wrap cs" style="padding-top:52px;padding-bottom:20px">
+    <div class="prose">
+      <p style="font-size:20px;line-height:1.6;color:var(--text-soft)">{d.summary}</p>
+      <Content />
+    </div>
+    <aside class="cs__side">
+      {d.role && (
+        <div class="cs__block">
+          <div class="cs__label">Role</div>
+          <p style="font-size:14.5px;line-height:1.6;color:var(--text-mute)">{d.role}</p>
+        </div>
+      )}
+      {d.deliverables.length > 0 && (
+        <div class="cs__block">
+          <div class="cs__label">Deliverables</div>
+          <ul class="cs__list">{d.deliverables.map(x => <li>{x}</li>)}</ul>
+        </div>
+      )}
+      {d.results.length > 0 && (
+        <div class="cs__block">
+          <div class="cs__label">Results</div>
+          {d.results.map(r => (
+            <div style="margin-bottom:14px">
+              <div style="font-family:var(--font-display);font-weight:800;font-size:26px;color:var(--teal-light);line-height:1">{r.figure}</div>
+              <div style="font-size:13px;color:var(--text-dim);margin-top:4px">{r.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      <a class="btn btn--action" href="/contact" style="font-size:15px;width:100%;justify-content:center">Tell me what you need</a>
+    </aside>
+  </section>
+
+  {d.gallery.length > 0 && (
+    <section class="wrap" style="padding-bottom:64px">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        {d.gallery.map(g => (
+          <figure style="margin:0">
+            <div class="imgslot" style="min-height:280px">
+              {g.src ? <img src={g.src} alt={g.caption || d.title} loading="lazy" /> : 'Project image'}
+            </div>
+            {g.caption && <figcaption style="font-size:13.5px;color:var(--text-dim);margin-top:10px">{g.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="wrap" style="padding-bottom:64px">
+    <h2 style="font-weight:700;font-size:26px;margin-bottom:24px">More work</h2>
+    <div class="grid-3" style="gap:22px">
+      {related.map(p => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <CTABand image="/images/cta-band.jpg" />
+</Base>
+
+<style>
+  .cs { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
+  .cs__side { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 24px; }
+  .cs__block { border-top: 1px solid var(--line); padding-top: 16px; }
+  .cs__label { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 10px; }
+  .cs__list { margin: 0; padding-left: 18px; font-size: 14.5px; line-height: 1.7; color: var(--text-mute); }
+  @media (max-width: 900px) {
+    .cs { grid-template-columns: 1fr; gap: 32px; }
+    .cs__side { position: static; }
+  }
+</style>

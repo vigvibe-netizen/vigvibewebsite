@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CTABand from '../../components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base
+  title="Services"
+  description="Presentation design, campaign and marketing design, creative operations, AI workflows, and fractional creative direction — fixed scope, one project at a time."
+  active="Services"
+  overlayHeader={true}
+>
+  <PageHeader
+    title="Services"
+    eyebrow="Fixed scope · No retainer required"
+    intro="Five ways to work together. Each one is scoped and quoted before it starts, and each one ends with something your team can keep running without me."
+    image="/images/services-header.jpg"
+  />
+
+  <section class="wrap" style="padding-top:40px;padding-bottom:64px">
+    <div class="svcs">
+      {services.map(s => (
+        <a class={s.data.priority ? 'card card--priority svcrow' : 'card svcrow'} href={'/services/' + s.id}>
+          <div>
+            <h2 style="font-weight:700;font-size:24px;margin-bottom:10px">{s.data.title}</h2>
+            <p style="font-size:15.5px;line-height:1.65;color:var(--text-mute);max-width:70ch">{s.data.intro}</p>
+          </div>
+          <span style={s.data.priority ? 'color:var(--orange);font-weight:600;font-size:14px;white-space:nowrap' : 'color:var(--teal-light);font-weight:600;font-size:14px;white-space:nowrap'}>See how it works →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <CTABand image="/images/cta-band.jpg" />
+</Base>
+
+<style>
+  .svcs { display: flex; flex-direction: column; gap: 16px; }
+  .svcrow { display: flex; align-items: center; justify-content: space-between; gap: 32px; color: inherit; transition: border-color 160ms var(--ease); }
+  .svcrow:hover { border-color: var(--teal-light); }
+  @media (max-width: 900px) { .svcrow { flex-direction: column; align-items: flex-start; gap: 16px; } }
+</style>

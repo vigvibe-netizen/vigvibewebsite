@@ -1,0 +1,50 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SEO landing pages live at the root but are generated under /services/.
+# These are rewrites (200), not redirects, so the root URL is the canonical one.
+[[redirects]]
+  from = "/presentation-designer"
+  to = "/services/presentation-designer"
+  status = 200
+
+[[redirects]]
+  from = "/creative-operations-consultant"
+  to = "/services/creative-operations-consultant"
+  status = 200
+
+[[redirects]]
+  from = "/marketing-design-contractor"
+  to = "/services/marketing-design-contractor"
+  status = 200
+
+[[redirects]]
+  from = "/ai-workflow-consultant"
+  to = "/services/ai-workflow-consultant"
+  status = 200
+
+[[redirects]]
+  from = "/fractional-creative-director"
+  to = "/services/fractional-creative-director"
+  status = 200
+
+# Old vinyoyo.com / scottvigneault.com paths — add real mappings as you find them.
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/work"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

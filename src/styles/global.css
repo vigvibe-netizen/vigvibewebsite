@@ -1,0 +1,170 @@
+/* VigVibe — FlowX tokens on the dark shell.
+   Fonts: Mulish (display) + Montserrat (body/UI), per the FlowX system.
+   Swap the Google Fonts link in Base.astro for self-hosted woff2 before launch. */
+
+:root {
+  /* FlowX brand */
+  --teal: #00B2BE;
+  --teal-light: #71CCD9;
+  --teal-deep: #008A94;
+  --orange: #F7901C;
+  --orange-deep: #F36B26;
+
+  /* Dark shell */
+  --ink: #0B1113;
+  --ink-deep: #070C0D;
+  --surface: #131C1F;
+  --surface-sunk: #0F1719;
+  --surface-warm: #1C1A17;
+  --line: #2B3639;
+  --line-strong: #3A4649;
+  --line-warm: #3D3226;
+
+  /* Text */
+  --text: #F2F5F5;
+  --text-bright: #F7FAFA;
+  --text-soft: #DDE3E3;
+  --text-mute: #AEB8B9;
+  --text-dim: #8B9799;
+  --text-faint: #6B7779;
+
+  --font-display: 'Mulish', system-ui, sans-serif;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+  --font-mono: ui-monospace, Menlo, monospace;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --pill: 999px;
+
+  --pad-x: 56px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text);
+  letter-spacing: -.01em;
+  text-wrap: pretty;
+  margin: 0;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: var(--teal-light); text-decoration: none; transition: color 160ms var(--ease); }
+a:hover { color: #9ADCE6; }
+
+img { max-width: 100%; }
+
+.wrap { padding-left: var(--pad-x); padding-right: var(--pad-x); }
+
+.eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--teal-light); margin: 0;
+}
+.eyebrow--orange { color: var(--orange); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  border-radius: var(--pill); font-family: var(--font-body);
+  font-size: 16px; font-weight: 700; padding: 14px 26px;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background 160ms var(--ease), transform 120ms var(--ease), border-color 160ms var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn--action { background: var(--orange); color: #10171A; }
+.btn--action:hover { background: var(--orange-deep); color: #10171A; }
+.btn--ghost { border-color: rgba(255,255,255,.5); color: #fff; font-weight: 600; }
+.btn--ghost:hover { border-color: #fff; color: #fff; }
+.btn--teal { border-color: var(--teal-light); color: var(--teal-light); font-weight: 600; padding: 9px 17px; font-size: 14px; }
+.btn--teal:hover { background: rgba(113,204,217,.12); color: var(--teal-light); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--teal);
+  border-radius: 16px;
+  padding: 26px 22px 22px;
+}
+.card--priority { background: var(--surface-warm); border-color: var(--line-warm); border-top-color: var(--orange); }
+
+.tag {
+  border: 1px solid var(--line-strong); border-radius: var(--pill);
+  padding: 9px 17px; font-size: 13px; font-weight: 500; color: #C3CBCC;
+}
+.tag--on { background: var(--teal-light); border-color: var(--teal-light); color: var(--ink); font-weight: 600; }
+
+.mono-note { font: 600 9.5px var(--font-mono); letter-spacing: .09em; color: var(--text-faint); }
+
+/* Photo bands — every band is one CMS image field. Without an image the band
+   falls back to a flat panel so nothing looks broken on a fresh install. */
+.band { position: relative; overflow: hidden; display: flex; }
+.band__img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 60%;
+  filter: grayscale(1) contrast(1.06) brightness(.8);
+}
+.band__img--placeholder { background: linear-gradient(160deg, #1A272B, #0F1719); filter: none; }
+.band__scrim { position: absolute; inset: 0; }
+.band__body { position: relative; z-index: 3; width: 100%; }
+.band h1, .band h2, .band p { text-shadow: 0 2px 20px rgba(0,0,0,.65); }
+
+.imgslot {
+  position: relative; background: var(--surface-sunk);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-faint); overflow: hidden;
+}
+.imgslot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.row { display: flex; align-items: center; gap: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.prose p { font-size: 16.5px; line-height: 1.75; color: var(--text-mute); margin: 0 0 22px; }
+.prose p:first-of-type { color: #C3CBCC; }
+.prose h2 { font-size: 25px; font-weight: 700; margin: 34px 0 16px; }
+.prose h3 { font-size: 19px; font-weight: 700; margin: 26px 0 12px; }
+.prose ul, .prose ol { color: var(--text-mute); font-size: 16.5px; line-height: 1.75; padding-left: 22px; margin: 0 0 22px; }
+.prose li { margin-bottom: 8px; }
+.prose img { border-radius: var(--r-md); border: 1px solid var(--line); margin: 8px 0 26px; }
+.prose blockquote {
+  margin: 0 0 26px; padding: 20px 24px; background: #101B1D;
+  border: 1px solid #33403F; border-left: 3px solid var(--teal);
+  border-radius: 14px; color: var(--text-soft); font-size: 17px;
+}
+
+input[type="email"], input[type="text"], textarea, select {
+  width: 100%; background: var(--ink); border: 1px solid var(--line-strong);
+  border-radius: 10px; padding: 12px 14px; color: var(--text);
+  font-family: var(--font-body); font-size: 14.5px;
+}
+input::placeholder, textarea::placeholder { color: var(--text-faint); }
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--teal-light); }
+label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+
+@media (max-width: 900px) {
+  :root { --pad-x: 20px; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}

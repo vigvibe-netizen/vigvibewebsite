@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CTABand from '../../components/CTABand.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map(service => ({ params: { slug: service.id }, props: { service } }));
+}
+
+const { service } = Astro.props;
+const d = service.data;
+const { Content } = await render(service);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: d.title,
+  serviceType: d.title,
+  provider: { '@type': 'Person', name: 'Scott Vigneault', url: 'https://vigvibe.com/about' },
+  areaServed: 'United States',
+  description: d.seoDescription
+};
+const faqSchema = d.faqs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: d.faqs.map(x => ({
+    '@type': 'Question', name: x.q,
+    acceptedAnswer: { '@type': 'Answer', text: x.a }
+  }))
+} : null;
+---
+<Base title={d.seoTitle} description={d.seoDescription} schema={schema} active="Services" overlayHeader={true}>
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+  <PageHeader title={d.h1} eyebrow={d.eyebrow} intro={d.intro} image={d.header} />
+
+  <section class="wrap" style="padding-top:48px;padding-bottom:20px">
+    <div class="prose" style="max-width:70ch">
+      <Content />
+    </div>
+  </section>
+
+  {d.whatYouGet.length > 0 && (
+    <section class="wrap" style="padding-bottom:56px">
+      <p class="eyebrow" style="margin-bottom:22px">What you get</p>
+      <div class="grid-3">
+        {d.whatYouGet.map(x => (
+          <div class="card">
+            <h3 style="font-weight:700;font-size:19px;margin-bottom:10px">{x.title}</h3>
+            <p style="font-size:14.5px;line-height:1.65;color:var(--text-mute)">{x.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {d.process.length > 0 && (
+    <section class="wrap" style="padding-bottom:56px">
+      <p class="eyebrow" style="margin-bottom:22px">How it runs</p>
+      <div class="steps">
+        {d.process.map((x, i) => (
+          <div class="step">
+            <div class="step__n">{i + 1}</div>
+            <div>
+              <h3 style="font-weight:700;font-size:18px;margin-bottom:5px">{x.title}</h3>
+              <p style="font-size:15px;line-height:1.65;color:var(--text-mute)">{x.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      {d.priceNote && <p style="margin-top:28px;font-size:14.5px;color:var(--text-dim)">{d.priceNote}</p>}
+    </section>
+  )}
+
+  {d.faqs.length > 0 && (
+    <section class="wrap" style="padding-bottom:56px">
+      <p class="eyebrow" style="margin-bottom:20px">Common questions</p>
+      <div style="border-top:1px solid var(--line);max-width:80ch">
+        {d.faqs.map(x => (
+          <div style="padding:22px 0;border-bottom:1px solid var(--line)">
+            <h3 style="font-weight:700;font-size:19px;margin-bottom:8px">{x.q}</h3>
+            <p style="font-size:15.5px;line-height:1.7;color:var(--text-mute)">{x.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <CTABand image="/images/cta-band.jpg" heading="Tell me what you need." body="Describe the project in two sentences. I will tell you what it actually is." />
+</Base>
+
+<style>
+  .steps { display: flex; flex-direction: column; gap: 22px; max-width: 80ch; }
+  .step { display: flex; gap: 16px; }
+  .step__n {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--teal); color: var(--teal-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  }
+</style>

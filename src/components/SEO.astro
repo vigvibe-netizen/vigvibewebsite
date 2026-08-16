@@ -1,0 +1,15 @@
+---
+const { title, description, image = '/images/og-default.jpg', schema } = Astro.props;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const full = title + ' · VigVibe';
+---
+<title>{full}</title>
+<link rel="canonical" href={url} />
+<meta name="description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={full} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={new URL(image, Astro.site).href} />
+<meta name="twitter:card" content="summary_large_image" />
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import CTABand from '../../components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const cats = [];
+projects.forEach(p => {
+  if (!cats.some(c => c.slug === p.data.category)) cats.push({ slug: p.data.category, label: p.data.categoryLabel });
+});
+---
+<Base
+  title="Work"
+  description="Campaign systems, brand identities, keynotes, sites, animations, and event environments — mostly B2B, mostly under deadline."
+  active="Work"
+  overlayHeader={true}
+>
+  <PageHeader
+    title="Work"
+    intro="Campaign systems, brand identities, keynotes, sites, animations, and event environments — mostly B2B, mostly under deadline."
+    image="/images/work-header.jpg"
+  />
+
+  <section class="wrap" style="padding-top:26px">
+    <div class="chips" style="padding-bottom:26px;border-bottom:1px solid var(--line)">
+      <button class="tag tag--on" data-filter="all" type="button">All work</button>
+      {cats.map(c => <button class="tag" data-filter={c.slug} type="button">{c.label}</button>)}
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:32px;padding-bottom:64px">
+    <div class="grid-3" style="gap:24px 22px">
+      {projects.map(p => (
+        <div data-cat={p.data.category}>
+          <ProjectCard project={p} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CTABand image="/images/cta-band.jpg" />
+</Base>
+
+<script is:inline>
+  var buttons = document.querySelectorAll('[data-filter]');
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var want = btn.getAttribute('data-filter');
+      buttons.forEach(function (b) { b.classList.toggle('tag--on', b === btn); });
+      document.querySelectorAll('[data-cat]').forEach(function (card) {
+        card.hidden = want !== 'all' && card.getAttribute('data-cat') !== want;
+      });
+    });
+  });
+</script>

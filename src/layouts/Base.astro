@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+import SEO from '../components/SEO.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const { title, description, image, schema, active = '', overlayHeader = false } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" />
+  <SEO title={title} description={description} image={image} schema={schema} />
+</head>
+<body>
+  <SiteHeader active={active} overlay={overlayHeader} />
+  <main>
+    <slot />
+  </main>
+  <SiteFooter />
+
+  <!-- Parallax: any .band__img[data-par] drifts on scroll. Disabled for reduced motion. -->
+  <script is:inline>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var layers = Array.prototype.slice.call(document.querySelectorAll('[data-par]'));
+      if (!layers.length) return;
+      var ticking = false;
+      function frame() {
+        var vh = window.innerHeight;
+        layers.forEach(function (el) {
+          var r = el.parentElement.getBoundingClientRect();
+          if (r.bottom < -200 || r.top > vh + 200) return;
+          var mid = r.top + r.height / 2 - vh / 2;
+          el.style.transform = 'translate3d(0,' + (-mid * parseFloat(el.dataset.par)).toFixed(1) + 'px,0)';
+        });
+        ticking = false;
+      }
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      frame();
+    })();
+  </script>
+</body>
+</html>

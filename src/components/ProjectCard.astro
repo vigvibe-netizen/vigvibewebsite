@@ -1,0 +1,27 @@
+---
+const { project, size = 'md' } = Astro.props;
+const d = project.data;
+const href = '/work/' + d.category + '/' + project.id.split('/').pop();
+---
+<a class="pc" href={href}>
+  <div class="imgslot" style={size === 'lg' ? 'height:190px' : 'height:200px'}>
+    {d.cover ? <img src={d.cover} alt={d.title} loading="lazy" /> : 'Project image'}
+  </div>
+  <div class="pc__body">
+    <p class="pc__cat">{d.categoryLabel}</p>
+    <h3 class="pc__title">{d.title}</h3>
+    <p class="pc__meta">{d.client} · {d.year}</p>
+    {size === 'lg' && d.summary && <p class="pc__sum">{d.summary}</p>}
+  </div>
+</a>
+
+<style>
+  .pc { display: block; color: inherit; }
+  .pc:hover .imgslot { border-color: var(--teal-light); }
+  .pc:hover .pc__title { color: var(--teal-light); }
+  .pc__body { padding: 14px 2px 0; }
+  .pc__cat { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 6px; }
+  .pc__title { font-weight: 600; font-size: 17px; color: var(--text); margin-bottom: 4px; transition: color 160ms var(--ease); }
+  .pc__meta { font-size: 13px; color: var(--text-dim); }
+  .pc__sum { font-size: 14px; line-height: 1.6; color: var(--text-mute); margin-top: 10px; }
+</style>
