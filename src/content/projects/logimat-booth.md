@@ -5,7 +5,7 @@ year: 2023
 category: events
 categoryLabel: Event design
 summary: Booth environment and signage system for a European logistics trade show — structure, graphics, and a repeatable panel kit.
-cover: /images/logimat-cover.jpeg
+cover: /images/loftware-brochure-electronics.png
 order: 4
 role: Environmental design, signage, production art
 deliverables:

@@ -5,7 +5,7 @@ year: 2023
 category: campaigns
 categoryLabel: Campaigns
 summary: Editorial-led campaign series — banner system, editorial spreads, and a cover treatment carried across paid, email, and event.
-cover: /images/spotlight-cover.jpg
+cover: /images/spotlight-cover.png
 featured: true
 order: 5
 role: Campaign design, art direction
@@ -14,9 +14,9 @@ deliverables:
   - Banner and editorial system
   - Event and email adaptations
 gallery:
-  - src: /images/spotlight-banner.jpg
+  - src: ""
     caption: Banner system — one treatment, every placement.
-  - src: /images/spotlight-editorial.jpg
+  - src: ""
     caption: Editorial spread from the campaign series.
 seoDescription: An editorial-led B2B campaign system — identity, banners, spreads, and channel adaptations produced from a single art direction.
 ---

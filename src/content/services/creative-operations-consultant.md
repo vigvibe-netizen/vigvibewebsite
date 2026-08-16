@@ -6,6 +6,7 @@ h1: A creative operations consultant who starts with intake, not software
 intro: Your team may not be slow. Your workflow may be leaking time. I find the leaks, name the one worth fixing first, and leave you with a process your team will actually keep.
 order: 2
 priority: true
+header: /images/creative-workflow-management-stages.png
 seoTitle: Creative Operations Consultant
 seoDescription: Creative operations consulting for marketing and creative teams — intake, briefs, approvals, and handoffs. Find the workflow leaks and fix the ones that matter first.
 whatYouGet:

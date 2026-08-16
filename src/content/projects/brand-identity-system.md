@@ -5,7 +5,7 @@ year: 2021
 category: brand-identity
 categoryLabel: Brand identity
 summary: Full brand system redesign — logo, visual identity, typography, color, templates, and guidelines for a global marketing team.
-cover: /images/brand-identity-cover.png
+cover: /images/loftware-brochure-manufacturing.png
 featured: true
 order: 3
 role: Creative direction, identity design, template system

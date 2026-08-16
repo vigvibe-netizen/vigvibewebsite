@@ -5,7 +5,7 @@ year: 2024
 category: presentations
 categoryLabel: Presentation design
 summary: Conference keynote for a global software launch — clear story structure, strong visual hierarchy, executive-level polish.
-cover: /images/convergence-cover.png
+cover: /images/modernizing-streamlining-digitizing.png
 featured: true
 order: 2
 role: Presentation design, story structure, art direction
@@ -17,9 +17,9 @@ results:
   - figure: 600K
     label: video views across the session series
 gallery:
-  - src: /images/convergence-slide-1.png
+  - src: ""
     caption: Opening sequence — one idea per slide, built to read from the back of the room.
-  - src: /images/convergence-slide-2.png
+  - src: ""
     caption: Session template applied by presenters across the conference track.
 seoDescription: Conference keynote design for Loftware's Convergence event — story structure, slide system, and stage graphics for a global software launch.
 ---

@@ -5,7 +5,7 @@ date: 2026-03-04
 readingTime: 6 min read
 excerpt: Five steps, in order, that you can run without buying software. Most teams find the biggest leak in the first week — and it is almost never the design tool.
 shortAnswer: One intake channel, one required brief field set, one weekly triage, one owner per request, one measurement. Thirty days, no new software.
-cover: /images/post-30-day-playbook.png
+cover: /images/benefits-of-creative-operations-management.png
 tags:
   - Playbooks
   - Workflow

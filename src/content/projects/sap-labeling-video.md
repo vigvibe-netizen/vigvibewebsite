@@ -5,7 +5,7 @@ year: 2023
 category: motion
 categoryLabel: Motion design
 summary: Animated explainer for a technical product story — storyboard, motion system, and stills reused as campaign assets.
-cover: /images/sap-video-cover.png
+cover: /images/ensuring-supply-chain-continuity.png
 order: 6
 role: Storyboard, motion design
 deliverables:

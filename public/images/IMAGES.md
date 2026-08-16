@@ -8,6 +8,24 @@ Bands are rendered black and white at build-independent CSS (`grayscale(1)`), so
 color originals. Export at 2x the listed size, JPEG quality 72–80, then run them through
 Squoosh or `sharp`.
 
+## Already in the repo
+Pulled across from `scott-vigneault-portfolio` and renamed to lowercase-hyphenated ASCII:
+
+- `hero-studio.jpg` — wired to the home hero
+- `scott-vigneault-portrait.jpg` — wired to /about and the blog author block
+- `spotlight-cover.png` — wired to the Spotlight campaign project
+- `creative-workflow-management-stages.png` — wired to the creative-ops service header
+
+Unassigned but available — attach them to a project entry in the CMS, or tell Claude which
+project each belongs to:
+
+- `loftware-brochure-manufacturing.png`, `loftware-brochure-electronics.png`
+- `benefits-of-creative-operations-management.png`
+- `five-myths-of-artwork-management.png`
+- `modernizing-streamlining-digitizing.png`
+- `seven-key-challenges-pharma-labeling.png`
+- `ensuring-supply-chain-continuity.png`
+
 ## Photo bands (B&W parallax)
 | File | Where | Suggested size | Notes |
 |---|---|---|---|

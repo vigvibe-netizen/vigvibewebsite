@@ -5,7 +5,7 @@ year: 2024
 category: design-layout
 categoryLabel: Design layout
 summary: Multi-asset B2B campaign system across reports, landing pages, ads, and email — generating 15K+ leads per series.
-cover: /images/top5trends-cover.png
+cover: /images/seven-key-challenges-pharma-labeling.png
 featured: true
 order: 1
 role: Creative direction, layout design, campaign system
@@ -20,11 +20,11 @@ results:
   - figure: "3"
     label: annual editions on one system
 gallery:
-  - src: /images/top5trends-spread-1.png
+  - src: ""
     caption: Report spread — the trend structure repeats across all three editions.
-  - src: /images/trends-infographic-1.png
+  - src: ""
     caption: Infographic pulled from the report as a standalone campaign asset.
-  - src: /images/top5trends-banner.png
+  - src: ""
     caption: Banner set sized for paid, email, and event use.
 seoDescription: A B2B annual report and campaign system for Loftware's Top 5 Trends series — layout design, infographics, and derivative assets that generated 15K+ leads per series.
 ---

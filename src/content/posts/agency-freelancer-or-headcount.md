@@ -5,7 +5,7 @@ date: 2026-02-18
 readingTime: 4 min read
 excerpt: "The honest answer depends on three things: how often the work recurs, how senior the judgment needs to be, and who owns the deadline."
 shortAnswer: Hire a freelancer when the work is project-shaped and the deadline is yours. Hire an agency when you need many disciplines at once and can absorb the overhead. Hire a headcount when the work recurs every week and someone has to own it internally. Most teams reach for the agency when a freelancer would have been faster and cheaper.
-cover: /images/post-hire-decision.png
+cover: /images/creative-workflow-management-stages.png
 tags:
   - Answers
   - Hiring
