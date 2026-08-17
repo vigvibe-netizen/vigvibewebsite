@@ -4,7 +4,7 @@ const d = project.data;
 const href = '/work/' + d.category + '/' + project.id.split('/').pop();
 ---
 <a class="pc" href={href}>
-  <div class="imgslot" style={size === 'lg' ? 'height:190px' : 'height:200px'}>
+  <div class="imgslot" style="aspect-ratio:3/2">
     {d.cover ? <img src={d.cover} alt={d.title} loading="lazy" /> : 'Project image'}
   </div>
   <div class="pc__body">

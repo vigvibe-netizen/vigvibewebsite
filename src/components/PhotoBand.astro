@@ -8,7 +8,8 @@ const {
   parallax = 0,
   scrim = 'bottom',
   brightness = '.8',
-  split = 0
+  split = 0,
+  mono = true
 } = Astro.props;
 
 const scrims = {
@@ -16,8 +17,11 @@ const scrims = {
   full: 'linear-gradient(to bottom,#0B1113 0%,rgba(11,17,19,.12) 22%,rgba(11,17,19,.12) 62%,#0B1113 100%)',
   left: 'linear-gradient(95deg,rgba(11,17,19,.9) 0%,rgba(11,17,19,.5) 58%,rgba(11,17,19,.2) 100%)'
 };
+const filterCss = mono
+  ? 'grayscale(1) contrast(1.06) brightness(' + brightness + ')'
+  : 'contrast(1.02) brightness(' + brightness + ')';
 const imgStyle = image
-  ? 'background-image:url(' + image + ');background-position:' + focal + ';filter:grayscale(1) contrast(1.06) brightness(' + brightness + ')'
+  ? 'background-image:url(' + image + ');background-position:' + focal + ';filter:' + filterCss
   : '';
 
 /* split = the mockup's hero treatment: the photo occupies the right N% of the band and

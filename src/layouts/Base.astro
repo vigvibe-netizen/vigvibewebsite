@@ -4,10 +4,22 @@ import SEO from '../components/SEO.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
-const { title, description, image, schema, active = '', overlayHeader = false } = Astro.props;
+const { title, description, image, schema, active = '', overlayHeader = false, tone } = Astro.props;
+
+/* Section tone: one background gradient per area of the site, over the shared texture. */
+const p = Astro.url.pathname;
+const autoTone =
+  p === '/' ? 'home'
+  : p.startsWith('/work') ? 'work'
+  : p.startsWith('/services') ? 'services'
+  : p.startsWith('/downloads') ? 'downloads'
+  : p.startsWith('/blog') || p.startsWith('/answers') ? 'blog'
+  : p.startsWith('/about') ? 'about'
+  : p.startsWith('/contact') || p.startsWith('/book') ? 'contact'
+  : 'home';
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-tone={tone || autoTone}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
