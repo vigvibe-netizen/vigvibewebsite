@@ -1,12 +1,12 @@
 ---
-title: LogiMAT tradeshow
-client: Loftware
+title: The True Cost of Mislabeling
+client: Loftware at LogiMAT
 category: events
 categoryLabel: Event design
 summary: Booth environment, wayfinding, and signage for a European logistics trade show — plus the infographic that anchored the stand.
-cover: /images/logimat-tradeshow.png
+cover: /images/logimat-cover.png
 featured: true
-order: 7
+order: 2
 role: Environmental design, signage, infographic
 deliverables:
   - Booth graphics and wall panels

@@ -1,11 +1,11 @@
 ---
 title: Graham Machinery Group
 client: Graham Machinery Group
-category: campaigns
-categoryLabel: Campaigns
+category: websites
+categoryLabel: Website
 summary: Marketing campaign for an industrial manufacturer — brochures, infographics, and applied collateral.
-cover: /images/graham-machinery-cover.png
-order: 10
+cover: /images/graham-cover.png
+order: 9
 role: Campaign design, layout, infographics
 deliverables:
   - Campaign collateral

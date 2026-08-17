@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PhotoBand from '../components/PhotoBand.astro';
 import CTABand from '../components/CTABand.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import NeedForm from '../components/NeedForm.astro';
 import { getCollection } from 'astro:content';
 
 const featured = (await getCollection('projects'))
@@ -17,14 +18,21 @@ const stats = [
   { figure: '140%', label: 'workflow & cycle-time improvement', accent: true }
 ];
 
+const icons = {
+  layers: '<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/>',
+  deck: '<path d="M2 3h20"/><path d="M4 3v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V3"/><path d="m8 21 4-6 4 6"/>',
+  flow: '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M6 9v6"/><path d="M20 12h-6"/><path d="m17 9 3 3-3 3"/>',
+  cpu: '<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>'
+};
+
 const services = [
-  { title: 'Campaign design', href: '/services/marketing-design-contractor', cta: 'Build campaign assets →',
+  { title: 'Campaign design', href: '/services/marketing-design-contractor', cta: 'Build campaign assets →', icon: icons.layers,
     body: 'Assets, systems, and brand consistency across every marketing channel — digital ads, emails, landing pages, event materials, sales sheets, and social graphics.' },
-  { title: 'Deck rescue', href: '/services/presentation-designer', cta: 'Fix my deck →',
+  { title: 'Deck rescue', href: '/services/presentation-designer', cta: 'Fix my deck →', icon: icons.deck,
     body: 'Clear structure, stronger visual hierarchy, and purposeful design for sales decks, executive presentations, webinars, investor pitches, and conference keynotes.' },
-  { title: 'Creative ops', href: '/services/creative-operations-consultant', cta: 'Find the bottleneck →', priority: true,
+  { title: 'Creative ops', href: '/services/creative-operations-consultant', cta: 'Find the bottleneck →', priority: true, icon: icons.flow,
     body: 'Intake systems, better briefs, cleaner approvals, and workflow design so your team stops losing time to unclear requests, rework, and late-stage revisions.' },
-  { title: 'AI workflows', href: '/services/ai-workflow-consultant', cta: 'Use AI better →',
+  { title: 'AI workflows', href: '/services/ai-workflow-consultant', cta: 'Use AI better →', icon: icons.cpu,
     body: 'Practical AI integration for creative and marketing teams — prompts, templates, handoffs, and repeatable workflows that reduce manual production time.' }
 ];
 
@@ -44,15 +52,18 @@ const schema = {
   schema={schema}
   overlayHeader={true}
 >
-  <PhotoBand image="/images/hero-bg.jpg" focal="52% 0%" height="680px" scrim="bottom" brightness="1" split={64}>
-    <div style="max-width:660px;padding-bottom:30px">
-      <p class="eyebrow" style="margin-bottom:20px">Design &amp; creative direction · Boston, remote</p>
-      <h1 style="font-weight:800;font-size:64px;line-height:1.04;letter-spacing:-.02em;color:#fff;max-width:17ch;margin-bottom:24px">Fewer revisions. Fewer meetings. Better work, sooner.</h1>
-      <p style="font-size:19px;line-height:1.55;color:var(--text-soft);max-width:54ch;margin-bottom:34px">Twenty years of in-house creative leadership, available one project at a time. Brand and campaign design, decks that hold a room, and the workflow fixes that keep them coming out on schedule.</p>
-      <div class="row">
-        <a class="btn btn--action" href="/contact">Tell me what you need</a>
-        <a class="btn btn--ghost" href="/work">See the work</a>
+  <PhotoBand image="/images/hero-art.jpg" focal="center 44%" height="760px" align="center" scrim="left" brightness=".62" mono={false}>
+    <div class="hero">
+      <div>
+        <p class="eyebrow" style="margin-bottom:20px">Design &amp; creative direction · Boston, remote</p>
+        <h1 style="font-weight:800;font-size:58px;line-height:1.05;letter-spacing:-.02em;color:#fff;max-width:17ch;margin-bottom:22px">Fewer revisions. Fewer meetings. Better work, sooner.</h1>
+        <p style="font-size:18px;line-height:1.55;color:var(--text-soft);max-width:50ch;margin-bottom:32px">Twenty years of in-house creative leadership, available one project at a time. Brand and campaign design, decks that hold a room, and the workflow fixes that keep them coming out on schedule.</p>
+        <div class="row">
+          <a class="btn btn--action" href="/contact">Tell me what you need</a>
+          <a class="btn btn--ghost" href="/work">See the portfolio</a>
+        </div>
       </div>
+      <NeedForm />
     </div>
   </PhotoBand>
 
@@ -70,6 +81,7 @@ const schema = {
     <div class="grid-4">
       {services.map(s => (
         <a class={s.priority ? 'card card--priority svc' : 'card svc'} href={s.href}>
+          <svg class="svc__icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke={s.priority ? 'var(--orange)' : 'var(--teal)'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon}></svg>
           <h3 style="font-weight:700;font-size:20px;margin-bottom:12px">{s.title}</h3>
           <p style="font-size:14px;line-height:1.6;color:var(--text-mute);flex:1">{s.body}</p>
           <div class="svc__cta" style={s.priority ? 'color:var(--orange)' : 'color:var(--teal-light)'}>{s.cta}</div>
@@ -101,10 +113,13 @@ const schema = {
   .stats__label { margin-top: 6px; font-size: 13px; color: var(--text-dim); }
   .svc { display: flex; flex-direction: column; color: inherit; transition: border-color 160ms var(--ease); }
   .svc:hover { border-color: var(--teal-light); }
+  .svc__icon { display: block; margin-bottom: 16px; }
   .svc__cta { margin-top: 20px; font-size: 13px; font-weight: 600; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 52px; align-items: center; }
   .sec__head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 14px; gap: 20px; }
   @media (max-width: 900px) {
     .stats { grid-template-columns: 1fr 1fr; gap: 20px; }
     h1 { font-size: 34px !important; }
+    .hero { grid-template-columns: 1fr; gap: 30px; padding: 40px 0; }
   }
 </style>

@@ -5,7 +5,7 @@ category: motion
 categoryLabel: Motion design
 summary: Animated explainer for a technical product story — storyboard, motion system, and frame stills reused as campaign assets.
 cover: /images/explainer-1.png
-order: 8
+order: 11
 role: Storyboard, motion design
 deliverables:
   - Explainer animation

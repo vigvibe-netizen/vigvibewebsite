@@ -2,11 +2,11 @@
 title: Spotlight campaign
 client: Loftware
 category: campaigns
-categoryLabel: Campaigns
+categoryLabel: Campaign
 summary: An editorial-led campaign series — cover treatment, banner system, and spreads carried across paid, email, and event.
 cover: /images/spotlight-cover.png
 featured: true
-order: 1
+order: 10
 role: Campaign design, art direction
 deliverables:
   - Campaign identity and cover system

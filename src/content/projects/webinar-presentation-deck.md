@@ -1,12 +1,12 @@
 ---
-title: Presentation slide deck for webinar
+title: Marketing Strategy
 client: Loftware
 category: presentations
-categoryLabel: Presentation design
+categoryLabel: Slide deck
 summary: Webinar deck built to hold attention through a screen — structure first, then a slide system the presenters could extend.
-cover: /images/webinar-deck-cover.png
+cover: /images/marketing-strategy-deck-cover.png
 featured: true
-order: 9
+order: 7
 role: Presentation design, story structure
 deliverables:
   - Webinar deck

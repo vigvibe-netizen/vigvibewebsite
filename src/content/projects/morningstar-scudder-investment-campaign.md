@@ -1,11 +1,11 @@
 ---
-title: Morningstar / Scudder Investment campaign
-client: Morningstar · Scudder Investments
+title: 20 Minutes to Retirement
+client: Scudder Investments
 category: campaigns
-categoryLabel: Campaigns
+categoryLabel: Campaign
 summary: A financial-services campaign series — layout system and applied assets across the program.
-cover: /images/morningstar-1.png
-order: 5
+cover: /images/scudder-cover.png
+order: 1
 role: Campaign design, layout
 deliverables:
   - Campaign layout system

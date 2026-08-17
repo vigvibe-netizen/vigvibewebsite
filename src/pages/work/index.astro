@@ -12,20 +12,20 @@ projects.forEach(p => {
 });
 ---
 <Base
-  title="Work"
+  title="Portfolio"
   description="Campaign systems, brand identities, keynotes, sites, animations, and event environments — mostly B2B, mostly under deadline."
-  active="Work"
+  active="Portfolio"
   overlayHeader={true}
 >
   <PageHeader
-    title="Work"
+    title="Portfolio"
     intro="Campaign systems, brand identities, keynotes, sites, animations, and event environments — mostly B2B, mostly under deadline."
     image="/images/photo-band.jpg"
   />
 
   <section class="wrap" style="padding-top:26px">
     <div class="chips" style="padding-bottom:26px;border-bottom:1px solid var(--line)">
-      <button class="tag tag--on" data-filter="all" type="button">All work</button>
+      <button class="tag tag--on" data-filter="all" type="button">All projects</button>
       {cats.map(c => <button class="tag" data-filter={c.slug} type="button">{c.label}</button>)}
     </div>
   </section>

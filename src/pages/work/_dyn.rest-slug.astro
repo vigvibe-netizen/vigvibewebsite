@@ -31,7 +31,7 @@ const schema = {
   dateCreated: d.year ? String(d.year) : undefined
 };
 ---
-<Base title={d.title} description={d.seoDescription} image={d.cover} schema={schema} active="Work" overlayHeader={true}>
+<Base title={d.title} description={d.seoDescription} image={d.cover} schema={schema} active="Portfolio" overlayHeader={true}>
   <PhotoBand image={d.cover} focal="center 40%" height="400px">
     <p class="eyebrow" style="margin-bottom:14px">{d.categoryLabel}</p>
     <h1 style="font-weight:800;font-size:46px;line-height:1.08;color:#fff;max-width:22ch;margin-bottom:12px">{d.title}</h1>
@@ -87,7 +87,7 @@ const schema = {
   )}
 
   <section class="wrap" style="padding-bottom:64px">
-    <h2 style="font-weight:700;font-size:26px;margin-bottom:24px">More work</h2>
+    <h2 style="font-weight:700;font-size:26px;margin-bottom:24px">More from the portfolio</h2>
     <div class="grid-3" style="gap:22px">
       {related.map(p => <ProjectCard project={p} />)}
     </div>

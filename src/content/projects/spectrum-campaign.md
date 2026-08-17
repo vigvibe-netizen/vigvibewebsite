@@ -1,11 +1,11 @@
 ---
-title: Spectrum campaign
-client: Loftware
+title: Loftware Delivers
+client: Spectrum · Loftware
 category: campaigns
-categoryLabel: Campaigns
+categoryLabel: Campaign
 summary: Campaign design built around a single product promise, carried across the supporting asset set.
-cover: /images/spectrum-campaign.png
-order: 6
+cover: /images/loftware-delivers-cover.png
+order: 8
 role: Campaign design
 seoDescription: A B2B product campaign built around a single promise and carried across the full supporting asset set.
 ---

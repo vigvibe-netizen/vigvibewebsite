@@ -1,12 +1,11 @@
 ---
-title: Branding redesign
+title: Loftware Convergence
 client: Loftware
-year: 2018
 category: brand-identity
 categoryLabel: Brand identity
 summary: The earlier identity system — visual language, editorial covers, and a campaign look applied across a full year of content.
-cover: /images/branding-2018-cover.png
-order: 3
+cover: /images/convergence-cover.png
+order: 5
 role: Creative direction, identity design
 deliverables:
   - Visual identity system

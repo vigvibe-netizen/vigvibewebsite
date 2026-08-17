@@ -1,11 +1,11 @@
 ---
-title: Top 5 Trends banner campaign
+title: Top 5 Trends of Enterprise Labeling
 client: Loftware
 year: 2023
 category: campaigns
-categoryLabel: Campaigns
+categoryLabel: Campaign
 summary: The banner system for the annual Top 5 Trends program — one treatment sized for paid, email, web, and event.
-cover: /images/top5trends-banner-campaign.png
+cover: /images/top5trends-cover.png
 featured: true
 order: 4
 role: Campaign design

@@ -1,5 +1,5 @@
 ---
-title: Branding identity and template redesign
+title: Strategic Rebrand — “Make Your Mark”
 client: Loftware
 year: 2023
 category: brand-identity
@@ -7,7 +7,7 @@ categoryLabel: Brand identity
 summary: Identity refresh and the template library that carried it — decks, documents, and campaign layouts a marketing team could run without a designer in every request.
 cover: /images/branding-2023-cover.png
 featured: true
-order: 2
+order: 3
 role: Creative direction, identity design, template system
 deliverables:
   - Identity refresh
