@@ -43,11 +43,13 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--ink); }
 
 body {
   margin: 0;
-  background: var(--ink);
+  background: transparent;
+  position: relative;
+  isolation: isolate;
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
@@ -69,6 +71,57 @@ a { color: var(--teal-light); text-decoration: none; transition: color 160ms var
 a:hover { color: #9ADCE6; }
 
 img { max-width: 100%; }
+
+/* Site background: one shared texture, one gradient per section of the site.
+   Both live behind all content (z-index:-1 on body pseudo-elements). */
+html::before,
+html::after {
+  content: ''; position: fixed; inset: 0;
+  pointer-events: none; z-index: 0;
+}
+html::before {
+  background-image: url('/images/site-texture.png');
+  background-size: cover; background-position: center;
+  opacity: .07; filter: saturate(.7);
+}
+html::after { background: radial-gradient(120% 90% at 10% -10%, rgba(0,178,190,.16), transparent 62%); }
+body { z-index: 1; }
+
+html[data-tone="home"]::after {
+  background:
+    radial-gradient(110% 80% at 8% -12%, rgba(0,178,190,.18), transparent 60%),
+    radial-gradient(90% 70% at 100% 108%, rgba(247,144,28,.13), transparent 62%);
+}
+html[data-tone="work"]::after {
+  background:
+    radial-gradient(120% 90% at 92% -8%, rgba(0,138,148,.20), transparent 64%),
+    radial-gradient(80% 60% at 0% 100%, rgba(113,204,217,.08), transparent 60%);
+}
+html[data-tone="services"]::after {
+  background:
+    radial-gradient(100% 80% at 96% -10%, rgba(247,144,28,.17), transparent 60%),
+    radial-gradient(90% 70% at 0% 90%, rgba(0,178,190,.10), transparent 62%);
+}
+html[data-tone="downloads"]::after {
+  background:
+    radial-gradient(120% 90% at 50% -14%, rgba(0,178,190,.20), transparent 58%),
+    radial-gradient(80% 60% at 100% 100%, rgba(0,138,148,.12), transparent 60%);
+}
+html[data-tone="blog"]::after {
+  background:
+    radial-gradient(110% 80% at 0% -10%, rgba(113,204,217,.14), transparent 60%),
+    radial-gradient(90% 70% at 100% 60%, rgba(0,138,148,.10), transparent 64%);
+}
+html[data-tone="about"]::after {
+  background:
+    radial-gradient(110% 80% at 12% -10%, rgba(247,144,28,.12), transparent 58%),
+    radial-gradient(90% 80% at 100% 90%, rgba(0,178,190,.14), transparent 62%);
+}
+html[data-tone="contact"]::after {
+  background:
+    radial-gradient(100% 70% at 50% 110%, rgba(247,144,28,.16), transparent 60%),
+    radial-gradient(90% 70% at 0% -10%, rgba(0,178,190,.12), transparent 60%);
+}
 
 .wrap { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 
