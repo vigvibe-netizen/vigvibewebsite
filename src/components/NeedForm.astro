@@ -45,6 +45,8 @@ const needs = [
 </div>
 
 <style>
+  /* hidden must win over the display rules below */
+  .need [hidden] { display: none !important; }
   .need { background: var(--surface); border: 1px solid #33403F; border-radius: var(--r-lg); overflow: hidden; max-width: 460px; }
   .need__head { padding: 14px 18px; background: var(--ink); border-bottom: 1px solid var(--line); }
   .need__list { padding: 10px 12px 14px; display: flex; flex-direction: column; gap: 4px; }
