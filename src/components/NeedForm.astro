@@ -15,7 +15,9 @@ const needs = [
   </div>
   <div class="need__list" data-need-list>
     {needs.map((n, i) => (
-      <button type="button" class={i === needs.length - 1 ? 'need__item need__item--other' : 'need__item'} data-need-pick={n}>{n}</button>
+      <button type="button" class={i === needs.length - 1 ? 'need__item need__item--other' : 'need__item'} data-need-pick={n}>
+        <span class="need__arw">&rarr;</span><span class="need__lbl">{n}</span>
+      </button>
     ))}
   </div>
   <form class="need__form" data-need-form name="need" method="POST" action="/thanks" data-netlify="true" netlify-honeypot="bot-field" hidden>
@@ -52,7 +54,17 @@ const needs = [
     font-size: 14px; font-weight: 500; color: #C3CBCC; cursor: pointer;
     transition: background 140ms var(--ease), color 140ms var(--ease);
   }
-  .need__item:hover { background: #222E31; color: var(--text); }
+  .need__item { display: flex; align-items: center; gap: 10px; }
+  .need__arw {
+    display: inline-block; flex: none; font-family: var(--font-mono, ui-monospace, Menlo, monospace);
+    color: var(--teal-light); opacity: .45; transform: translateX(-2px);
+    transition: transform 180ms var(--ease), opacity 180ms var(--ease), color 140ms var(--ease);
+  }
+  .need__lbl { transition: color 140ms var(--ease); }
+  .need__item:hover { background: #222E31; }
+  .need__item:hover .need__arw { transform: translateX(5px); opacity: 1; color: var(--orange); }
+  .need__item:hover .need__lbl { color: #fff; }
+  .need__item--other .need__arw { color: var(--orange); opacity: .75; }
   .need__item--other { color: var(--orange); font-weight: 600; border-top: 1px solid var(--line); margin-top: 6px; padding-top: 14px; border-radius: 0; }
   .need__form { padding: 18px; display: flex; flex-direction: column; gap: 16px; }
   .need__back { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 15px; color: #fff; }
