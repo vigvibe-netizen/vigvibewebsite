@@ -1,0 +1,112 @@
+VIGVIBE — COMPLETE SITE. THIS IS THE WHOLE THING.
+=================================================
+
+You do not need to delete anything file-by-file. Replace the folder contents
+in one move instead.
+
+
+THE 6 STEPS
+-----------
+
+1. Unzip this. You get a folder called "site" containing:
+   src/  public/  scripts/  astro.config.mjs  netlify.toml  package.json
+   README.md  stackbit.config.ts  .gitignore
+
+2. Open your cloned repo folder (vigvibewebsite) in Finder.
+
+3. Select EVERYTHING inside it EXCEPT the folder named ".git"
+   - Cmd-A to select all
+   - Cmd-click ".git" to deselect it   (if you don't see .git, press
+     Cmd-Shift-Period to show hidden files)
+   - Cmd-Delete
+   Do NOT delete the .git folder. That is what connects you to GitHub.
+   Do NOT delete the repo folder itself.
+
+4. Open the unzipped "site" folder, select everything inside it,
+   and drag it into the now-empty repo folder.
+
+5. Open GitHub Desktop. It will show a long list of changes — deletions
+   and additions together. That is correct and expected.
+   Summary: "Full site replace"
+   Click "Commit to main", then "Push origin".
+
+6. Netlify rebuilds in 2-3 minutes.
+
+
+WHY THIS WORKS
+--------------
+Git tracks deletions the same way it tracks edits. By emptying the folder
+and dropping in a clean copy, every file you wanted gone is recorded as a
+deletion automatically. You never have to hunt down an individual file.
+
+
+NETLIFY BUILD SETTINGS (confirm these once)
+-------------------------------------------
+Build command:      npm run build
+Publish directory:  dist
+
+If the repo root is the site root (it is, after step 4), leave the base
+directory blank.
+
+
+AFTER IT DEPLOYS — 2 THINGS TO DO IN NETLIFY
+--------------------------------------------
+1. Forms > "need" > add a notification email, or the "I need..." form
+   submissions just sit in the dashboard instead of reaching your inbox.
+
+2. Identity > Enable Identity, then Services > Git Gateway > Enable.
+   That unlocks the visual editor at yoursite.com/admin so you can edit
+   copy, dates, and images in a browser instead of asking me.
+
+
+WHAT IS IN THIS BUILD
+---------------------
+HOME
+  The retro background art is the hero. Headline, copy, and buttons are
+  left-aligned and vertically centered over it, with the robot's head
+  level with "sooner." Below: stats row, What I Do cards with line
+  icons, a "Start here" section holding the "I need..." form, then
+  Selected work.
+
+BACKGROUND
+  One image site-wide: public/images/site-bg.png. Swap that single file
+  and the whole site changes. A different gradient sits over it per
+  section (home, portfolio, services, AI skills, blog, about, contact).
+
+PORTFOLIO  (nav says Portfolio; URLs stay /work/...)
+   1  20 Minutes to Retirement - Scudder Investments
+   2  The True Cost of Mislabeling - Loftware at LogiMAT
+   3  Strategic Rebrand "Make Your Mark" - Loftware
+   4  Top 5 Trends of Enterprise Labeling - Loftware
+   5  Loftware Convergence
+   6  Enterprise Labeling Thought Leadership Series
+   7  Marketing Strategy - Loftware
+   8  Loftware Delivers - Spectrum
+   9  Graham Machinery Group
+  10  Spotlight campaign
+  11  SAP Labeling Explainer
+  Cards are 3:2. Export covers at 1200 x 800, or 1800 x 1200 for retina.
+
+SERVICES
+  4-column card grid with line icons. Creative ops keeps the orange
+  priority treatment.
+
+AI SKILLS  (was Downloads; URL stays /downloads)
+  Grouped by AI tool. Copy Workshop is the live download. Marketing
+  Campaign Brief, Branding Brief, and Logo Brief are "Coming soon."
+
+IMAGES
+  Every unused image is already gone. The shutterstock mountain photo was
+  never part of the website - it only ever lived in your local reference
+  folder.
+
+RESPONSIVE
+  Breakpoints at 1180px (grids go 2-up), 900px (single column), and
+  640px (smaller headings, full-width buttons).
+
+
+STILL NEEDS YOU
+---------------
+- Card 6 (Thought Leadership Series) has placeholder body copy.
+- About, Blog, Answers, and Contact need real copy.
+- Confirm which card the white-paper artwork belongs to (3 or 6).
