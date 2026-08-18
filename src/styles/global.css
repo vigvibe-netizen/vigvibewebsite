@@ -10,14 +10,14 @@
   --orange: #F7901C;
   --orange-deep: #F36B26;
 
-  /* Dark shell */
-  --ink: #0B1113;
-  --ink-deep: #070C0D;
-  --surface: #131C1F;
-  --surface-sunk: #0F1719;
-  --surface-warm: #1C1A17;
-  --line: #2B3639;
-  --line-strong: #3A4649;
+  /* Dark shell — blue, matched to the studio background art */
+  --ink: #0B1821;
+  --ink-deep: #050F16;
+  --surface: #142430;
+  --surface-sunk: #0C1926;
+  --surface-warm: #1E1A19;
+  --line: #1E3243;
+  --line-strong: #2C4356;
   --line-warm: #3D3226;
 
   /* Text */
@@ -43,7 +43,11 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; background: var(--ink); }
+html {
+  scroll-behavior: smooth;
+  background: linear-gradient(180deg, #20303B 0%, #16242E 26%, #0B1821 58%, #050F16 100%);
+  background-attachment: fixed;
+}
 
 body {
   margin: 0;
@@ -82,11 +86,12 @@ html::after {
 }
 html::before {
   background-image:
-    linear-gradient(to bottom, rgba(11,17,19,.5) 0%, rgba(11,17,19,.08) 24%, rgba(11,17,19,.55) 64%, #0B1113 94%),
+    linear-gradient(90deg, rgba(9,18,25,.9) 0%, rgba(9,18,25,.62) 30%, rgba(9,18,25,.22) 58%, rgba(9,18,25,.12) 100%),
+    linear-gradient(to bottom, rgba(15,26,34,.5) 0%, rgba(9,18,25,.1) 30%, rgba(7,15,21,.66) 66%, #050F16 92%),
     url('/images/site-bg.png');
-  background-size: auto, auto 130%;
-  background-position: center, 58% 80%;
-  background-repeat: no-repeat, no-repeat;
+  background-size: auto, auto, 100% auto;
+  background-position: center, center, center top;
+  background-repeat: no-repeat, no-repeat, no-repeat;
 }
 html::after { background: radial-gradient(120% 90% at 10% -10%, rgba(0,178,190,.16), transparent 62%); }
 body { z-index: 1; }
