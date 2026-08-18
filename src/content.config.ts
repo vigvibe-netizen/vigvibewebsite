@@ -71,6 +71,7 @@ const downloads = defineCollection({
     externalUrl: z.string().default(''),
     downloadCount: z.number().default(0),
     featured: z.boolean().default(false),
+    comingSoon: z.boolean().default(false),
     order: z.number().default(99)
   })
 });

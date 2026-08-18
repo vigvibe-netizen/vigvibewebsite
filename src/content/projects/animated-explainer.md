@@ -1,10 +1,10 @@
 ---
-title: Animated explainer
+title: SAP Labeling Explainer
 client: Loftware
 category: motion
 categoryLabel: Motion design
 summary: Animated explainer for a technical product story — storyboard, motion system, and frame stills reused as campaign assets.
-cover: /images/explainer-1.png
+cover: /images/explainer-cover.png
 order: 11
 role: Storyboard, motion design
 deliverables:

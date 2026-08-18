@@ -70,7 +70,8 @@ p { margin: 0; text-wrap: pretty; }
 a { color: var(--teal-light); text-decoration: none; transition: color 160ms var(--ease); }
 a:hover { color: #9ADCE6; }
 
-img { max-width: 100%; }
+img, svg, video { max-width: 100%; }
+body { overflow-x: hidden; }
 
 /* Site background: one shared texture, one gradient per section of the site.
    Both live behind all content (z-index:-1 on body pseudo-elements). */
@@ -80,9 +81,12 @@ html::after {
   pointer-events: none; z-index: 0;
 }
 html::before {
-  background-image: url('/images/site-texture-alt.png');
-  background-size: cover; background-position: center top;
-  opacity: .16; filter: saturate(.85);
+  background-image:
+    linear-gradient(to bottom, rgba(11,17,19,.5) 0%, rgba(11,17,19,.08) 24%, rgba(11,17,19,.55) 64%, #0B1113 94%),
+    url('/images/site-bg.png');
+  background-size: auto, auto 130%;
+  background-position: center, 58% 80%;
+  background-repeat: no-repeat, no-repeat;
 }
 html::after { background: radial-gradient(120% 90% at 10% -10%, rgba(0,178,190,.16), transparent 62%); }
 body { z-index: 1; }
@@ -216,9 +220,32 @@ input::placeholder, textarea::placeholder { color: var(--text-faint); }
 input:focus, textarea:focus, select:focus { outline: none; border-color: var(--teal-light); }
 label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
 
+/* Tablet: three-up and four-up become two-up before collapsing to one. */
+@media (max-width: 1180px) {
+  :root { --pad-x: 34px; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 900px) {
   :root { --pad-x: 20px; }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  /* Bands carry inline pixel heights for the desktop composition; let them
+     size to their content on small screens instead of clipping. */
+  .band { height: auto !important; min-height: 520px; }
+  .band__body { padding-top: 84px; padding-bottom: 44px; }
+  .btn { font-size: 15px; padding: 13px 22px; }
+  .chips { gap: 7px; }
+  .tag { padding: 8px 14px; font-size: 12.5px; }
+  .prose p, .prose ul, .prose ol { font-size: 15.5px; }
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 34px !important; line-height: 1.1 !important; }
+  h2 { font-size: 26px !important; }
+  h3 { font-size: 18px !important; }
+  .band { min-height: 460px; }
+  .row { flex-wrap: wrap; gap: 10px; }
+  .row .btn { flex: 1 1 100%; justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {

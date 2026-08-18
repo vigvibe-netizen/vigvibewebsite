@@ -5,6 +5,15 @@ import CTABand from '../../components/CTABand.astro';
 import { getCollection } from 'astro:content';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+/* Line icons, 2px stroke, rounded joins — teal by default, orange on the priority card. */
+const icons = {
+  'presentation-designer': '<path d="M2 3h20"/><path d="M4 3v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V3"/><path d="m8 21 4-6 4 6"/>',
+  'creative-operations-consultant': '<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M6 9v6"/><path d="M20 12h-6"/><path d="m17 9 3 3-3 3"/>',
+  'marketing-design-contractor': '<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/>',
+  'ai-workflow-consultant': '<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>',
+  'fractional-creative-director': '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"/>'
+};
 ---
 <Base
   title="Services"
@@ -20,14 +29,14 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
   />
 
   <section class="wrap" style="padding-top:40px;padding-bottom:64px">
-    <div class="svcs">
+    <div class="grid-4">
       {services.map(s => (
-        <a class={s.data.priority ? 'card card--priority svcrow' : 'card svcrow'} href={'/services/' + s.id}>
-          <div>
-            <h2 style="font-weight:700;font-size:24px;margin-bottom:10px">{s.data.title}</h2>
-            <p style="font-size:15.5px;line-height:1.65;color:var(--text-mute);max-width:70ch">{s.data.intro}</p>
-          </div>
-          <span style={s.data.priority ? 'color:var(--orange);font-weight:600;font-size:14px;white-space:nowrap' : 'color:var(--teal-light);font-weight:600;font-size:14px;white-space:nowrap'}>See how it works →</span>
+        <a class={s.data.priority ? 'card card--priority svccard' : 'card svccard'} href={'/services/' + s.id}>
+          <svg class="svccard__icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke={s.data.priority ? 'var(--orange)' : 'var(--teal)'} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icons[s.id]}></svg>
+          <p class={s.data.priority ? 'eyebrow eyebrow--orange' : 'eyebrow'} style="font-size:10.5px;margin-bottom:10px">{s.data.eyebrow}</p>
+          <h2 style="font-weight:700;font-size:20px;line-height:1.25;margin-bottom:12px">{s.data.title}</h2>
+          <p style="font-size:14px;line-height:1.6;color:var(--text-mute);flex:1">{s.data.intro}</p>
+          <div class="svccard__cta" style={s.data.priority ? 'color:var(--orange)' : 'color:var(--teal-light)'}>See how it works →</div>
         </a>
       ))}
     </div>
@@ -37,8 +46,9 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
 </Base>
 
 <style>
-  .svcs { display: flex; flex-direction: column; gap: 16px; }
-  .svcrow { display: flex; align-items: center; justify-content: space-between; gap: 32px; color: inherit; transition: border-color 160ms var(--ease); }
-  .svcrow:hover { border-color: var(--teal-light); }
-  @media (max-width: 900px) { .svcrow { flex-direction: column; align-items: flex-start; gap: 16px; } }
+  .svccard { display: flex; flex-direction: column; color: inherit; transition: border-color 160ms var(--ease); }
+  .svccard:hover { border-color: var(--teal-light); }
+  .card--priority.svccard:hover { border-color: var(--orange); }
+  .svccard__icon { display: block; margin-bottom: 16px; }
+  .svccard__cta { margin-top: 20px; font-size: 13px; font-weight: 600; }
 </style>

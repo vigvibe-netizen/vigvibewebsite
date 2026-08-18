@@ -3,7 +3,7 @@ const { active = '', overlay = false } = Astro.props;
 const nav = [
   { label: 'Portfolio', href: '/work' },
   { label: 'Services', href: '/services' },
-  { label: 'Downloads', href: '/downloads' },
+  { label: 'AI Skills', href: '/downloads' },
   { label: 'About', href: '/about' }
 ];
 ---
@@ -29,6 +29,13 @@ const nav = [
     border-bottom: 1px solid rgba(43,54,57,.8);
   }
   .hd--overlay { background: transparent; border-bottom: none; backdrop-filter: none; margin-bottom: -86px; }
+  /* Once the page scrolls, every header gets an opaque mask so page text
+     never competes with the nav labels. */
+  .hd--stuck, .hd--overlay.hd--stuck {
+    background: rgba(9,14,16,.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(43,54,57,.9);
+  }
   .hd__logo { display: block; line-height: 0; }
   .hd__logo img { height: 54px; width: auto; display: block; }
   .hd__nav { display: flex; align-items: center; gap: 26px; }
@@ -36,9 +43,22 @@ const nav = [
   .hd__link:hover { color: #fff; }
   .hd__link--on { color: #fff; font-weight: 600; border-bottom: 2px solid var(--teal-light); padding-bottom: 3px; }
   @media (max-width: 900px) {
-    .hd__logo img { height: 42px; }
-    .hd__nav { gap: 14px; }
+    .hd { padding: 12px var(--pad-x); gap: 12px; }
+    .hd__logo img { height: 38px; }
+    .hd__nav { gap: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .hd__nav::-webkit-scrollbar { display: none; }
     .hd__nav .btn--teal { display: none; }
-    .hd__link { font-size: 13px; }
+    .hd__link { font-size: 13px; white-space: nowrap; }
+    .hd--overlay { margin-bottom: -62px; }
   }
 </style>
+
+<script is:inline>
+  (function () {
+    var hd = document.querySelector('.hd');
+    if (!hd) return;
+    var mask = function () { hd.classList.toggle('hd--stuck', window.scrollY > 24); };
+    mask();
+    window.addEventListener('scroll', mask, { passive: true });
+  })();
+</script>
