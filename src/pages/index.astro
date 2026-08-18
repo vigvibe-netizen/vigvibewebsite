@@ -26,13 +26,13 @@ const icons = {
 
 const services = [
   { title: 'Campaign design', href: '/services/marketing-design-contractor', cta: 'Build campaign assets →', icon: icons.layers,
-    body: 'Assets, systems, and brand consistency across every marketing channel — digital ads, emails, landing pages, event materials, sales sheets, and social graphics.' },
+    body: 'Ads, emails, landing pages, sales sheets, event graphics. Built as a system, so the next round takes half as long.' },
   { title: 'Deck rescue', href: '/services/presentation-designer', cta: 'Fix my deck →', icon: icons.deck,
-    body: 'Clear structure, stronger visual hierarchy, and purposeful design for sales decks, executive presentations, webinars, investor pitches, and conference keynotes.' },
+    body: 'Too many slides, point buried on slide 14. I fix the order first, then make it look like you meant it.' },
   { title: 'Creative ops', href: '/services/creative-operations-consultant', cta: 'Find the bottleneck →', priority: true, icon: icons.flow,
-    body: 'Intake systems, better briefs, cleaner approvals, and workflow design so your team stops losing time to unclear requests, rework, and late-stage revisions.' },
+    body: 'Work gets stuck between people, not inside design. I find where, and fix that one thing first.' },
   { title: 'AI workflows', href: '/services/ai-workflow-consultant', cta: 'Use AI better →', icon: icons.cpu,
-    body: 'Practical AI integration for creative and marketing teams — prompts, templates, handoffs, and repeatable workflows that reduce manual production time.' }
+    body: 'Where AI saves your team real hours, and where it just makes more work for someone to check.' }
 ];
 
 const schema = {
@@ -47,15 +47,15 @@ const schema = {
 ---
 <Base
   title="Creative direction, presentation design & creative ops"
-  description="Fewer revisions. Fewer meetings. Better work, sooner. Twenty years of in-house creative leadership, available one project at a time."
+  description="Fewer revisions. Fewer meetings. Better work, sooner. Twenty years running creative inside marketing teams, now one project at a time."
   schema={schema}
   overlayHeader={true}
 >
   <section class="hero wrap">
     <div>
-      <p class="eyebrow" style="margin-bottom:20px">Design &amp; creative direction · Boston, remote</p>
+      <p class="eyebrow" style="margin-bottom:20px">Creative direction · Boston, remote</p>
       <h1 class="hero__h1">Fewer revisions. Fewer meetings. Better work, sooner.</h1>
-      <p style="font-size:18px;line-height:1.55;color:var(--text-soft);max-width:56ch;margin-bottom:32px">Twenty years of in-house creative leadership, available one project at a time. Brand and campaign design, decks that hold a room, and the workflow fixes that keep them coming out on schedule.</p>
+      <p style="font-size:18px;line-height:1.55;color:var(--text-soft);max-width:56ch;margin-bottom:32px">Twenty years running creative inside marketing teams. Now one project at a time: campaigns, decks that hold a room, and the workflow fixes that get them out on time.</p>
       <div class="row">
         <a class="btn btn--action" href="/contact">Tell me what you need</a>
         <a class="btn btn--ghost" href="/work">See the portfolio</a>
@@ -90,8 +90,8 @@ const schema = {
     <div class="start">
       <div>
         <p class="eyebrow eyebrow--orange" style="margin-bottom:18px">Start here</p>
-        <h2 class="start__h2">Tell me what you need and I will tell you the cleanest next move.</h2>
-        <p style="font-size:16px;line-height:1.6;color:var(--text-mute);max-width:52ch;margin:0">Pick the closest thing, write two sentences, and you get an answer within one business day. No call required, no discovery deck.</p>
+        <h2 class="start__h2">Tell me what you need. I will tell you the fastest way to get it.</h2>
+        <p style="font-size:16px;line-height:1.6;color:var(--text-mute);max-width:52ch;margin:0">Pick the closest one. Write two sentences. You get a straight answer in a day. No call, no discovery deck, no invoice for the advice.</p>
       </div>
       <NeedForm />
     </div>
@@ -100,9 +100,9 @@ const schema = {
   <section class="wrap" style="padding-top:0;padding-bottom:76px">
     <div class="sec__head">
       <h2 style="font-weight:700;font-size:34px">Selected work</h2>
-      <a href="/work" style="font-size:14px;font-weight:600">View all work →</a>
+      <a href="/work" style="font-size:14px;font-weight:600">See everything →</a>
     </div>
-    <p style="font-size:16px;line-height:1.6;color:var(--text-mute);max-width:70ch;margin-bottom:36px">A few examples of campaign systems, presentation design, creative direction, and workflow improvement across B2B marketing, events, product launches, and sales enablement.</p>
+    <p style="font-size:16px;line-height:1.6;color:var(--text-mute);max-width:70ch;margin-bottom:36px">Campaigns, decks, identity systems, and trade show booths. Mostly B2B. Almost always on a deadline that had already been set.</p>
     <div class="grid-3">
       {featured.map(p => <ProjectCard project={p} size="lg" />)}
     </div>

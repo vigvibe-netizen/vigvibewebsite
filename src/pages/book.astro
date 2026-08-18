@@ -1,20 +1,71 @@
 ---
 import Base from '../layouts/Base.astro';
+
+/* ── YOUR CALENDLY LINK GOES HERE ──────────────────────────────────
+   Replace the line below with your own scheduling link. It looks like
+   https://calendly.com/your-name/20min
+   Everything else is already wired.                                  */
+const CALENDLY = 'https://calendly.com/scott-vigneault/20min';
+
+/* Brand colors passed to Calendly so the widget matches the site. */
+const embed = CALENDLY
+  + (CALENDLY.includes('?') ? '&' : '?')
+  + 'hide_gdpr_banner=1'
+  + '&background_color=0C1926'
+  + '&text_color=E6EDEE'
+  + '&primary_color=F7901C';
 ---
 <Base
   title="Book a call"
   description="Twenty minutes to talk through the project. No pitch deck."
+  tone="contact"
 >
-  <section class="wrap" style="max-width:760px;margin:0 auto;padding-top:64px;padding-bottom:80px">
+  <section class="wrap" style="max-width:900px;margin:0 auto;padding-top:64px;padding-bottom:80px">
     <p class="eyebrow" style="margin-bottom:18px">Twenty minutes</p>
     <h1 style="font-weight:800;font-size:40px;line-height:1.1;margin-bottom:16px">Book a call</h1>
     <p style="font-size:17px;line-height:1.65;color:var(--text-mute);max-width:56ch;margin-bottom:32px">Bring the project, the deadline, and whatever is stuck. If email is easier, <a href="/contact">describe it in two sentences instead</a>.</p>
 
-    <!-- Drop your scheduler embed here (Cal.com, Savvycal, Calendly).
-         Keep it lazy so it does not block first paint. -->
-   <!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/vigvibe/30min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end --></div>
+    <div
+      class="cal"
+      data-url={embed}
+      style="min-height:700px;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface-sunk)"
+    >
+      <noscript>
+        <div style="padding:40px">
+          <a class="btn btn--action" href={CALENDLY}>Open the booking page →</a>
+        </div>
+      </noscript>
+    </div>
   </section>
 </Base>
+
+<script is:inline>
+  /* Loads Calendly only when the embed scrolls into view, so it never
+     blocks first paint. */
+  (function () {
+    var box = document.querySelector('.cal');
+    if (!box) return;
+
+    function mount() {
+      var s = document.createElement('script');
+      s.src = 'https://assets.calendly.com/assets/external/widget.js';
+      s.async = true;
+      s.onload = function () {
+        if (!window.Calendly) return;
+        window.Calendly.initInlineWidget({
+          url: box.dataset.url,
+          parentElement: box
+        });
+      };
+      document.head.appendChild(s);
+    }
+
+    if (!('IntersectionObserver' in window)) { mount(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      mount();
+    }, { rootMargin: '300px' });
+    io.observe(box);
+  })();
+</script>
