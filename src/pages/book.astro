@@ -1,71 +1,123 @@
 ---
 import Base from '../layouts/Base.astro';
-
-/* ── YOUR CALENDLY LINK GOES HERE ──────────────────────────────────
-   Replace the line below with your own scheduling link. It looks like
-   https://calendly.com/your-name/20min
-   Everything else is already wired.                                  */
-const CALENDLY = 'https://calendly.com/scott-vigneault/20min';
-
-/* Brand colors passed to Calendly so the widget matches the site. */
-const embed = CALENDLY
-  + (CALENDLY.includes('?') ? '&' : '?')
-  + 'hide_gdpr_banner=1'
-  + '&background_color=0C1926'
-  + '&text_color=E6EDEE'
-  + '&primary_color=F7901C';
 ---
 <Base
-  title="Book a call"
-  description="Twenty minutes to talk through the project. No pitch deck."
+  title="Contact VigVibe"
+  description="Tell me what you need in two sentences. I'll tell you what it would take — within one business day."
   tone="contact"
 >
-  <section class="wrap" style="max-width:900px;margin:0 auto;padding-top:64px;padding-bottom:80px">
-    <p class="eyebrow" style="margin-bottom:18px">Twenty minutes</p>
-    <h1 style="font-weight:800;font-size:40px;line-height:1.1;margin-bottom:16px">Book a call</h1>
-    <p style="font-size:17px;line-height:1.65;color:var(--text-mute);max-width:56ch;margin-bottom:32px">Bring the project, the deadline, and whatever is stuck. If email is easier, <a href="/contact">describe it in two sentences instead</a>.</p>
+  <section class="wrap contact-page">
+    <p class="eyebrow" style="margin-bottom:18px">One project · One email</p>
+    <h1 style="font-weight:800;font-size:44px;line-height:1.08;margin-bottom:16px">Contact VigVibe</h1>
+    <p style="font-size:18px;line-height:1.6;color:var(--text-mute);max-width:52ch;margin-bottom:40px">Tell me what you're working on. I'll tell you if I can help and what it would take. No call required, no pitch, no invoice for the advice.</p>
 
-    <div
-      class="cal"
-      data-url={embed}
-      style="min-height:700px;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface-sunk)"
+    <form
+      name="contact-book"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/thanks"
+      class="book-form"
     >
-      <noscript>
-        <div style="padding:40px">
-          <a class="btn btn--action" href={CALENDLY}>Open the booking page →</a>
+      <input type="hidden" name="form-name" value="contact-book" />
+      <p hidden><label>Leave blank <input name="bot-field" /></label></p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="b-name">Your name</label>
+          <input type="text" id="b-name" name="name" placeholder="Scott Vigneault" required />
         </div>
-      </noscript>
+        <div class="field">
+          <label for="b-company">Company</label>
+          <input type="text" id="b-company" name="company" placeholder="Optional" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="b-email">Email</label>
+        <input type="email" id="b-email" name="email" placeholder="you@company.com" required />
+      </div>
+
+      <div class="field">
+        <label for="b-need">What do you need?</label>
+        <select id="b-need" name="need">
+          <option value="">Pick the closest one</option>
+          <option>A deck fixed by Friday</option>
+          <option>A campaign built out</option>
+          <option>A logo or brand refresh</option>
+          <option>A website designed</option>
+          <option>Event or booth graphics</option>
+          <option>Our workflow untangled</option>
+          <option>Something else</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="b-message">Tell me more — two sentences is enough</label>
+        <textarea id="b-message" name="message" rows="5" required placeholder="Q3 product launch — need ads, a landing page, and an email sequence. Kickoff is in two weeks."></textarea>
+      </div>
+
+      <button class="btn btn--action" type="submit" style="font-size:16px;width:100%;justify-content:center">Send it over</button>
+      <p style="font-size:13px;line-height:1.55;color:var(--text-faint);text-align:center;margin-top:12px">I reply within one business day. No call required.</p>
+    </form>
+
+    <div class="contact-alt">
+      <div>
+        <div class="eyebrow" style="font-size:10.5px;margin-bottom:8px">Prefer email</div>
+        <p style="font-size:15px;color:var(--text-mute)"><a href="mailto:scott@vigvibe.com">scott@vigvibe.com</a></p>
+      </div>
+      <div>
+        <div class="eyebrow" style="font-size:10.5px;margin-bottom:8px">Where I work</div>
+        <p style="font-size:15px;color:var(--text-mute)">Haverhill, MA · remote across US time zones</p>
+      </div>
     </div>
   </section>
 </Base>
 
-<script is:inline>
-  /* Loads Calendly only when the embed scrolls into view, so it never
-     blocks first paint. */
-  (function () {
-    var box = document.querySelector('.cal');
-    if (!box) return;
+<style>
+  .contact-page {
+    max-width: 640px;
+    padding-top: 72px;
+    padding-bottom: 96px;
+  }
 
-    function mount() {
-      var s = document.createElement('script');
-      s.src = 'https://assets.calendly.com/assets/external/widget.js';
-      s.async = true;
-      s.onload = function () {
-        if (!window.Calendly) return;
-        window.Calendly.initInlineWidget({
-          url: box.dataset.url,
-          parentElement: box
-        });
-      };
-      document.head.appendChild(s);
-    }
+  .book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-bottom: 3rem;
+  }
 
-    if (!('IntersectionObserver' in window)) { mount(); return; }
-    var io = new IntersectionObserver(function (entries) {
-      if (!entries[0].isIntersecting) return;
-      io.disconnect();
-      mount();
-    }, { rootMargin: '300px' });
-    io.observe(box);
-  })();
-</script>
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .field label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .contact-alt {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 640px) {
+    .field-row { grid-template-columns: 1fr; }
+    .contact-page { padding-top: 44px; padding-bottom: 64px; }
+  }
+</style>

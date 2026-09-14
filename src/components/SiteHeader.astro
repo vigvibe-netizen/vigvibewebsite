@@ -15,7 +15,7 @@ const nav = [
     {nav.map(item => (
       <a href={item.href} class={active === item.label ? 'hd__link hd__link--on' : 'hd__link'}>{item.label}</a>
     ))}
-    <a href="/book" class="btn btn--teal">Book a call</a>
+    <a href="/book" class="btn btn--teal">Contact VigVibe</a>
   </nav>
 </header>
 
@@ -29,8 +29,6 @@ const nav = [
     border-bottom: 1px solid rgba(43,54,57,.8);
   }
   .hd--overlay { background: transparent; border-bottom: none; backdrop-filter: none; margin-bottom: -86px; }
-  /* Once the page scrolls, every header gets an opaque mask so page text
-     never competes with the nav labels. */
   .hd--stuck, .hd--overlay.hd--stuck {
     background: rgba(9,14,16,.94);
     backdrop-filter: blur(14px);
