@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Free 15-minute creative bottleneck call | VigVibe" exactTitle={true} description="Bring one unclear brief, stalled campaign or recurring revision problem. Talk it through with Scott Vigneault, VigVibe's creative director." tone="contact">
+<section class="wrap bottleneck">
+  <p class="eyebrow">One problem. One practical next step.</p>
+  <h1>Where is your creative work getting stuck?</h1>
+  <p class="lead">An unclear brief. Conflicting feedback. Too many revision rounds. More campaign variations than your team can produce.</p>
+  <p>Bring one example to a <strong>free 15-minute conversation with Scott Vigneault, VigVibe’s creative director.</strong> We’ll talk through where it’s slowing down and identify a practical next step.</p>
+  <div class="call-details"><h2>A focused conversation</h2><ul><li>Identify the handoff between Marketing and Creative that needs attention.</li><li>Explore where a clearer brief, experienced creative direction or AI assistance could help.</li><li>Choose one sensible next step for your team.</li></ul><p>You don’t need a presentation. A few sentences about what’s stuck are enough.</p></div>
+  <h2>Request your free 15-minute call</h2>
+  <p>Send your details and a couple of times that work. Scott will reply by email to arrange the call. This request does not reserve a calendar slot.</p>
+  <form name="creative-bottleneck" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/creative-bottleneck-thanks">
+    <input type="hidden" name="form-name" value="creative-bottleneck" />
+    <p hidden><label>Leave blank <input name="bot-field" /></label></p>
+    <label for="cb-name">Your name</label><input id="cb-name" name="name" autocomplete="name" required />
+    <label for="cb-email">Email</label><input id="cb-email" name="email" type="email" autocomplete="email" required />
+    <label for="cb-company">Company or website (optional)</label><input id="cb-company" name="company" type="text" />
+    <label for="cb-stuck">What’s stuck? Two sentences is enough.</label><textarea id="cb-stuck" name="bottleneck" rows="4" required placeholder="Our campaign keeps coming back for revisions. Marketing and Creative seem to be working from different briefs."></textarea>
+    <label for="cb-time">A couple of times that work, including your time zone (optional)</label><input id="cb-time" name="availability" placeholder="Tuesday afternoon or Thursday morning, Eastern" />
+    <label for="cb-phone">Your phone number (optional)</label><input id="cb-phone" name="phone" type="tel" autocomplete="tel" />
+    <button class="btn btn--action" type="submit">REQUEST A FREE 15-MINUTE CALL →</button>
+    <p class="small">Your details will be used to respond to this request. No newsletter signup.</p>
+  </form>
+  <div class="email"><h2>Prefer email?</h2><p><a href="mailto:scott@vigvibe.com?subject=Here%27s%20where%20our%20creative%20work%20is%20stuck">Tell me what’s stuck in two sentences →</a></p><p><a href="mailto:scott@vigvibe.com">scott@vigvibe.com</a></p></div>
+</section>
+</Base>
+<style>
+.bottleneck{max-width:780px;padding-top:64px;padding-bottom:80px}.bottleneck h1{font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.05;margin:18px 0 26px}.bottleneck h2{font-size:25px;margin:28px 0 14px}.bottleneck p,.bottleneck li{line-height:1.65;color:var(--text-soft)}.bottleneck p{margin-bottom:18px}.lead{font-size:21px}.call-details{border-left:3px solid var(--orange);padding:1px 24px;margin:30px 0}.call-details ul{padding-left:20px}.bottleneck form{display:flex;flex-direction:column;gap:10px;margin-top:24px}.bottleneck label{font-size:13px;font-weight:700;margin-top:10px}.bottleneck input,.bottleneck textarea{width:100%;padding:14px;border:1px solid var(--line-strong);border-radius:8px;background:var(--ink);color:var(--text);font:inherit}.bottleneck input:focus-visible,.bottleneck textarea:focus-visible{outline:2px solid var(--teal-light);outline-offset:3px}.bottleneck button{margin-top:18px;white-space:normal}.small{font-size:12px}.email{border-top:1px solid var(--line);margin-top:35px;padding-top:10px}
+</style>
