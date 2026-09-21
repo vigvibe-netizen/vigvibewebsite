@@ -100,7 +100,7 @@ const guidePages = [
 
           <div>
             <label for="unbound-website">Website</label>
-            <input id="unbound-website" type="url" name="website" inputmode="url" placeholder="https://yourcompany.com" />
+            <input id="unbound-website" type="text" name="website" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="www.yourcompany.com" />
           </div>
 
           <fieldset class="choice-set">
@@ -326,7 +326,7 @@ const guidePages = [
   }
   .guide-form { display: flex; flex-direction: column; gap: 17px; }
   .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .guide-form input[type="url"] {
+  .guide-form #unbound-website {
     width: 100%;
     background: var(--ink);
     border: 1px solid var(--line-strong);
@@ -336,8 +336,8 @@ const guidePages = [
     font-family: var(--font-body);
     font-size: 14.5px;
   }
-  .guide-form input[type="url"]:focus { outline: none; border-color: var(--teal-light); }
-  .guide-form input[type="url"]::placeholder { color: var(--text-faint); }
+  .guide-form #unbound-website:focus { outline: none; border-color: var(--teal-light); }
+  .guide-form #unbound-website::placeholder { color: var(--text-faint); }
   .choice-set {
     border: 0;
     padding: 0;
