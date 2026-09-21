@@ -1,14 +1,22 @@
 ---
-const { title, description, image = '/images/site-bg.png', schema } = Astro.props;
+const {
+  title,
+  description,
+  image = '/images/site-bg.png',
+  schema,
+  exactTitle = false,
+  ogTitle,
+  ogDescription
+} = Astro.props;
 const url = new URL(Astro.url.pathname, Astro.site).href;
-const full = title + ' · VigVibe';
+const full = exactTitle ? title : title + ' · VigVibe';
 ---
 <title>{full}</title>
 <link rel="canonical" href={url} />
 <meta name="description" content={description} />
 <meta property="og:type" content="website" />
-<meta property="og:title" content={full} />
-<meta property="og:description" content={description} />
+<meta property="og:title" content={ogTitle || full} />
+<meta property="og:description" content={ogDescription || description} />
 <meta property="og:url" content={url} />
 <meta property="og:image" content={new URL(image, Astro.site).href} />
 <meta name="twitter:card" content="summary_large_image" />
