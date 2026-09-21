@@ -47,6 +47,7 @@ const guidePages = [
   ogDescription="Five decisions to make before your UNBOUND notes become twelve new projects."
   tone="home"
 >
+  <div class="unbound-hero-scene">
   <section class="wrap unbound-hero">
     <div class="unbound-hero__copy">
       <p class="eyebrow">Notes from UNBOUND 2026</p>
@@ -132,6 +133,8 @@ const guidePages = [
       </div>
     </aside>
   </section>
+
+  </div>
 
   <section class="wrap section-pad">
     <div class="section-heading">
@@ -232,6 +235,46 @@ const guidePages = [
 </Base>
 
 <style>
+  /* Decorative art stays in the hero; the shared site texture resumes below. */
+  .unbound-hero-scene {
+    position: relative;
+    isolation: isolate;
+  }
+  .unbound-hero-scene::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(11,24,33,.94) 0%, rgba(11,24,33,.84) 38%, rgba(11,24,33,.24) 76%, rgba(11,24,33,.16)),
+      linear-gradient(180deg, rgba(11,24,33,.1) 0%, rgba(11,24,33,.1) 28%, #0B1821 84%),
+      url('/images/vigvibe-bg-01-robot-city.jpg') right top / auto 900px no-repeat;
+    mask-image: linear-gradient(#000 70%, transparent 100%);
+  }
+  .unbound-hero-scene .guide-form-card {
+    margin-top: 180px;
+    background: var(--surface);
+  }
+  .unbound-hero-scene .hero-copy { color: var(--text-soft); }
+  @media (max-width: 900px) {
+    .unbound-hero-scene::before {
+      background-size: auto, auto, auto 680px;
+      background-position: center, center, 72% top;
+      height: 850px;
+      max-height: 100%;
+    }
+    .unbound-hero-scene .guide-form-card { margin-top: 0; }
+  }
+  @media (max-width: 640px) {
+    .unbound-hero-scene::before {
+      background-image:
+        linear-gradient(90deg, rgba(11,24,33,.92), rgba(11,24,33,.72)),
+        linear-gradient(180deg, transparent 20%, #0B1821 84%),
+        url('/images/vigvibe-bg-01-robot-city.jpg');
+      background-position: center, center, right top;
+    }
+  }
   .unbound-hero {
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(360px, .72fr);
