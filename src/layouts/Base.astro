@@ -4,7 +4,18 @@ import SEO from '../components/SEO.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
-const { title, description, image, schema, active = '', overlayHeader = false, tone } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  schema,
+  active = '',
+  overlayHeader = false,
+  tone,
+  exactTitle = false,
+  ogTitle,
+  ogDescription
+} = Astro.props;
 
 /* Section tone: one background gradient per area of the site, over the shared texture. */
 const p = Astro.url.pathname;
@@ -29,7 +40,15 @@ const autoTone =
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" />
-  <SEO title={title} description={description} image={image} schema={schema} />
+  <SEO
+    title={title}
+    description={description}
+    image={image}
+    schema={schema}
+    exactTitle={exactTitle}
+    ogTitle={ogTitle}
+    ogDescription={ogDescription}
+  />
 </head>
 <body>
   <SiteHeader active={active} overlay={overlayHeader} />
