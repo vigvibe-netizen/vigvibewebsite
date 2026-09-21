@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">UNBOUND 2026: Okay. Now What?</title>
+  <desc id="desc">VigVibe Monday-After Field Guide</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1821"/>
+      <stop offset="1" stop-color="#050F16"/>
+    </linearGradient>
+    <radialGradient id="tealGlow" cx="0" cy="0" r="1" gradientTransform="translate(130 90) rotate(35) scale(560 420)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00B2BE" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#00B2BE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orangeGlow" cx="0" cy="0" r="1" gradientTransform="translate(1110 600) rotate(-145) scale(420 310)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7901C" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#F7901C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#tealGlow)"/>
+  <rect width="1200" height="630" fill="url(#orangeGlow)"/>
+  <rect x="70" y="66" width="155" height="6" rx="3" fill="#71CCD9"/>
+  <text x="70" y="118" fill="#71CCD9" font-family="Montserrat, Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="3">NOTES FROM UNBOUND 2026</text>
+  <text x="70" y="232" fill="#F7FAFA" font-family="Mulish, Arial, sans-serif" font-size="78" font-weight="800">UNBOUND 2026:</text>
+  <text x="70" y="324" fill="#71CCD9" font-family="Mulish, Arial, sans-serif" font-size="78" font-weight="800">OKAY. NOW WHAT?</text>
+  <text x="70" y="398" fill="#F7FAFA" font-family="Montserrat, Arial, sans-serif" font-size="29">Five decisions to make before your UNBOUND notes</text>
+  <text x="70" y="440" fill="#AEB8B9" font-family="Montserrat, Arial, sans-serif" font-size="29">become twelve new projects.</text>
+  <rect x="70" y="500" width="550" height="64" rx="16" fill="#0B1821" stroke="#2C4356" stroke-width="2"/>
+  <text x="96" y="541" fill="#F7901C" font-family="Montserrat, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2">THE MONDAY-AFTER FIELD GUIDE</text>
+  <text x="956" y="535" fill="#F7FAFA" font-family="Mulish, Arial, sans-serif" font-size="34" font-weight="800">VigVibe</text>
+  <text x="956" y="571" fill="#8B9799" font-family="Montserrat, Arial, sans-serif" font-size="20">vigvibe.com</text>
+</svg>

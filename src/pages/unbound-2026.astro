@@ -1,0 +1,685 @@
+---
+import Base from '../layouts/Base.astro';
+
+const themes = [
+  {
+    title: 'More is getting easier.',
+    body: 'AI can help teams generate more ideas, more versions, more content and more tests. That does not automatically mean better work.'
+  },
+  {
+    title: 'Testing creates creative demand.',
+    body: 'More experimentation sounds great until somebody has to create, review, revise, approve and ship all of those variations.'
+  },
+  {
+    title: 'AI needs somewhere to live.',
+    body: "A good prompt isn't a workflow. The useful question is where AI removes friction without adding another layer of chaos."
+  },
+  {
+    title: 'Human judgment matters more, not less.',
+    body: 'When producing something becomes inexpensive, deciding what is worth producing becomes more valuable.'
+  }
+];
+
+const choices = [
+  'We need more content',
+  'We need to test more creative',
+  'We need to get AI into the workflow',
+  'Creative is becoming the bottleneck',
+  'Our brand is getting inconsistent',
+  'I have 47 ideas and no clue where to start'
+];
+
+const guidePages = [
+  ['01', 'What actually changed?', 'Signal before novelty.'],
+  ['02', 'Where is the friction?', 'Start with the part that hurts.'],
+  ['03', 'What should AI own?', 'Automate the repeatable. Protect judgment.'],
+  ['04', 'Pick one move.', 'One problem. One experiment. One measure.'],
+  ['05', 'Put guardrails around it.', 'Speed still needs direction.'],
+  ['06', 'Then make something.', 'Strategy has to become work.']
+];
+---
+<Base
+  title="UNBOUND 2026: Okay. Now What? | VigVibe"
+  exactTitle={true}
+  description="A practical 7-minute field guide from VigVibe for turning UNBOUND 2026 ideas about AI, content, creative and growth into one useful next move."
+  image="/images/unbound-2026-og.svg"
+  ogTitle="UNBOUND 2026: Okay. Now What?"
+  ogDescription="Five decisions to make before your UNBOUND notes become twelve new projects."
+  tone="home"
+>
+  <section class="wrap unbound-hero">
+    <div class="unbound-hero__copy">
+      <p class="eyebrow">Notes from UNBOUND 2026</p>
+      <h1>UNBOUND 2026:<br /><span>Okay. Now What?</span></h1>
+      <p class="lead">A 7-minute field guide for turning a notebook full of AI, content, testing and growth ideas into one useful next move.</p>
+
+      <div class="hero-copy">
+        <p>I came home from UNBOUND with the same thing a lot of people did: pages of notes, a head full of possibilities, and a nagging question.</p>
+        <p class="hero-question">What do we actually do first?</p>
+        <p>I pulled together five decisions I think are worth making before adding another AI tool, content engine, campaign or workflow.</p>
+        <p>Nothing revolutionary. Just a useful way to sort the signal from the noise.</p>
+      </div>
+
+      <div class="field-note" aria-label="The Monday-After Field Guide">
+        <span class="field-note__mark">↳</span>
+        <div>
+          <div class="field-note__title">THE MONDAY-AFTER FIELD GUIDE</div>
+          <div class="field-note__meta">5 decisions. 7 minutes. One next move.</div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="guide-form-card" id="field-guide" aria-labelledby="guide-form-title">
+      <div data-guide-form-wrap>
+        <p class="eyebrow eyebrow--orange">Free field guide</p>
+        <h2 id="guide-form-title">What followed you home from UNBOUND?</h2>
+        <p class="guide-form-card__intro">Tell me where your head is right now and I’ll send you the field guide.</p>
+
+        <form
+          class="guide-form"
+          name="unbound-field-guide"
+          method="POST"
+          action="/unbound-2026"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          data-guide-form
+        >
+          <input type="hidden" name="form-name" value="unbound-field-guide" />
+          <p hidden><label>Leave blank <input name="bot-field" /></label></p>
+
+          <div class="form-grid">
+            <div>
+              <label for="unbound-name">First name</label>
+              <input id="unbound-name" type="text" name="first-name" autocomplete="given-name" required />
+            </div>
+            <div>
+              <label for="unbound-email">Email</label>
+              <input id="unbound-email" type="email" name="email" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div>
+            <label for="unbound-website">Website</label>
+            <input id="unbound-website" type="url" name="website" inputmode="url" placeholder="https://yourcompany.com" />
+          </div>
+
+          <fieldset class="choice-set">
+            <legend>What are you trying to figure out first?</legend>
+            {choices.map((choice, i) => (
+              <label class="choice" for={'unbound-choice-' + i}>
+                <input id={'unbound-choice-' + i} type="radio" name="next-move" value={choice} required />
+                <span>{choice}</span>
+              </label>
+            ))}
+          </fieldset>
+
+          <button class="btn btn--action guide-submit" type="submit">SEND ME THE FIELD GUIDE →</button>
+          <p class="privacy-note">No newsletter ambush. Just the guide and occasional useful thinking from VigVibe.</p>
+        </form>
+
+        <div class="guide-success" data-guide-success hidden aria-live="polite">
+          <div class="guide-success__check">✓</div>
+          <h3>Got it.</h3>
+          <p>Here’s the field guide.</p>
+          <p>If your notebook currently looks like twelve strategies fighting in a parking lot, start with page 4.</p>
+          <a
+            class="btn btn--action"
+            href="/downloads/unbound-2026-monday-after-field-guide.pdf"
+            data-guide-download
+          >DOWNLOAD THE FIELD GUIDE →</a>
+          <a class="quiet-link" href="/contact" data-stuck-link>Want another set of eyes on it? Tell me what’s stuck.</a>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="wrap section-pad">
+    <div class="section-heading">
+      <p class="eyebrow">What I kept hearing</p>
+      <h2>A lot came home with us.</h2>
+      <p>UNBOUND covered a lot of ground. AI. Content. Search. Testing. Agents. Personalization. New ways to grow.</p>
+      <p>But from a creative seat, several themes kept colliding.</p>
+    </div>
+
+    <div class="theme-grid">
+      {themes.map((theme, i) => (
+        <article class={i === 3 ? 'theme-card theme-card--warm' : 'theme-card'}>
+          <div class="theme-card__num">0{i + 1}</div>
+          <h3>{theme.title}</h3>
+          <p>{theme.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap thought-section">
+    <div class="thought-rule"></div>
+    <div class="thought-grid">
+      <h2>The problem probably isn't a shortage of ideas.</h2>
+      <div class="thought-copy">
+        <p>Most marketing teams I talk with already have plenty.</p>
+        <p>The harder questions are:</p>
+        <ul>
+          <li>What deserves to become a real initiative?</li>
+          <li>What should AI handle?</li>
+          <li>What still needs a human?</li>
+          <li>Where is work getting stuck?</li>
+          <li>And how do you increase output without turning your brand into beige AI soup?</li>
+        </ul>
+        <p>That is what this little guide is designed to help sort out.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap guide-section">
+    <div class="guide-section__copy">
+      <p class="eyebrow eyebrow--orange">Free 7-minute read</p>
+      <h2>The Monday-After Field Guide</h2>
+      <p class="guide-section__sub">Five decisions to make before you turn your UNBOUND notes into twelve new projects.</p>
+      <a class="btn btn--action" href="#field-guide">GET THE FIELD GUIDE →</a>
+    </div>
+
+    <div class="guide-stack" aria-label="Preview of six-page field guide">
+      {guidePages.slice(0, 3).map((page, i) => (
+        <article class={'guide-page guide-page--' + (i + 1)}>
+          <div class="guide-page__top">
+            <span>{page[0]}</span>
+            <span>UNBOUND 2026</span>
+          </div>
+          <div>
+            <h3>{page[1]}</h3>
+            <p>{page[2]}</p>
+          </div>
+          <div class="guide-page__scribble" aria-hidden="true">
+            {i === 0 ? '→ notice what changed' : i === 1 ? 'circle the friction' : 'human / machine'}
+          </div>
+        </article>
+      ))}
+      <div class="guide-index" aria-hidden="true">
+        {guidePages.map(page => <span>{page[0]} — {page[1]}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap why-section">
+    <div class="why-card">
+      <p class="eyebrow">Why I made this</p>
+      <h2>I'm still sorting through it too.</h2>
+      <div class="why-copy">
+        <p>I went to UNBOUND as a creative person.</p>
+        <p>After years of building campaigns, presentations, brands and creative systems inside marketing teams, I'm especially interested in what happens after somebody says:</p>
+        <blockquote>“We should be doing more of this.”</blockquote>
+        <p>Because eventually somebody has to turn the strategy into something people can actually see, read, test, approve and ship.</p>
+        <p>AI is changing that process quickly.</p>
+        <p>I'm interested in where it genuinely helps, where it creates new friction, and where experienced creative judgment still matters.</p>
+        <p>This isn't my definitive UNBOUND report.</p>
+        <p>It's simply the first useful thing I made from my notes.</p>
+        <p class="signature">— Scott</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap move-section">
+    <div>
+      <h2>What are you trying to move?</h2>
+      <p>If something from UNBOUND has you rethinking your content, creative process, campaign production or how AI fits into the work, send it over.</p>
+      <p>No giant discovery process required.</p>
+      <p>Sometimes a second set of eyes is enough to figure out the next move.</p>
+    </div>
+    <a class="btn btn--action" href="/contact" data-stuck-link>TELL ME WHAT'S STUCK →</a>
+  </section>
+
+  <div class="wrap unbound-disclaimer">
+    Independent attendee notes from Scott Vigneault / VigVibe. Not affiliated with or endorsed by HubSpot or UNBOUND.
+  </div>
+</Base>
+
+<style>
+  .unbound-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(360px, .72fr);
+    gap: clamp(44px, 6vw, 90px);
+    align-items: start;
+    padding-top: 84px;
+    padding-bottom: 84px;
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+  .unbound-hero__copy { padding-top: 26px; }
+  .unbound-hero h1 {
+    margin-top: 18px;
+    font-weight: 800;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: .96;
+    letter-spacing: -.045em;
+    max-width: 12ch;
+  }
+  .unbound-hero h1 span { color: var(--teal-light); }
+  .lead {
+    margin-top: 28px;
+    font-size: clamp(19px, 2vw, 24px);
+    line-height: 1.45;
+    color: var(--text-soft);
+    max-width: 38ch;
+  }
+  .hero-copy {
+    margin-top: 34px;
+    max-width: 68ch;
+    color: var(--text-mute);
+    font-size: 16px;
+    line-height: 1.72;
+  }
+  .hero-copy p + p { margin-top: 14px; }
+  .hero-copy .hero-question {
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 23px;
+    font-weight: 800;
+  }
+  .field-note {
+    margin-top: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 18px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-md);
+    background: rgba(11,24,33,.56);
+    transform: rotate(-.6deg);
+  }
+  .field-note__mark {
+    color: var(--orange);
+    font-family: var(--font-mono);
+    font-size: 24px;
+  }
+  .field-note__title {
+    color: #fff;
+    font: 700 12px var(--font-body);
+    letter-spacing: .11em;
+  }
+  .field-note__meta {
+    margin-top: 3px;
+    color: var(--text-dim);
+    font: 600 11px var(--font-mono);
+  }
+
+  .guide-form-card {
+    position: sticky;
+    top: 104px;
+    background: rgba(20,36,48,.96);
+    border: 1px solid var(--line-strong);
+    border-top: 4px solid var(--orange);
+    border-radius: var(--r-lg);
+    padding: 28px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.28);
+  }
+  .guide-form-card h2 {
+    font-size: 28px;
+    line-height: 1.12;
+    margin: 12px 0 12px;
+  }
+  .guide-form-card__intro {
+    color: var(--text-mute);
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+  .guide-form { display: flex; flex-direction: column; gap: 17px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .guide-form input[type="url"] {
+    width: 100%;
+    background: var(--ink);
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 14.5px;
+  }
+  .guide-form input[type="url"]:focus { outline: none; border-color: var(--teal-light); }
+  .guide-form input[type="url"]::placeholder { color: var(--text-faint); }
+  .choice-set {
+    border: 0;
+    padding: 0;
+    margin: 2px 0 0;
+  }
+  .choice-set legend {
+    display: block;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 9px;
+  }
+  .choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0;
+    padding: 9px 10px;
+    border-radius: 8px;
+    color: #C3CBCC;
+    font-size: 13.5px;
+    line-height: 1.35;
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+  }
+  .choice:hover { background: rgba(255,255,255,.04); color: #fff; }
+  .choice input { margin-top: 2px; accent-color: var(--teal); flex: none; }
+  .choice:has(input:focus-visible) { outline: 2px solid var(--teal-light); outline-offset: 2px; }
+  .guide-submit { width: 100%; justify-content: center; margin-top: 2px; }
+  .privacy-note {
+    color: var(--text-faint);
+    font-size: 11.5px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .guide-success[hidden] { display: none !important; }
+  .guide-success {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-top: 6px;
+  }
+  .guide-success__check {
+    width: 46px;
+    height: 46px;
+    border: 2px solid var(--teal);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--teal-light);
+    font-size: 21px;
+  }
+  .guide-success h3 { font-size: 28px; }
+  .guide-success p { color: var(--text-mute); font-size: 14.5px; line-height: 1.6; }
+  .quiet-link { font-size: 13px; font-weight: 600; }
+
+  .section-pad { padding-top: 78px; padding-bottom: 86px; }
+  .section-heading { max-width: 780px; }
+  .section-heading h2,
+  .thought-grid h2,
+  .guide-section h2,
+  .why-card h2,
+  .move-section h2 {
+    margin-top: 12px;
+    font-weight: 800;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.05;
+  }
+  .section-heading > p:not(.eyebrow) {
+    color: var(--text-mute);
+    max-width: 68ch;
+    margin-top: 16px;
+  }
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 40px;
+  }
+  .theme-card {
+    min-height: 275px;
+    padding: 26px 22px;
+    background: rgba(20,36,48,.86);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--teal);
+    border-radius: 16px;
+  }
+  .theme-card--warm { border-top-color: var(--orange); background: rgba(30,26,25,.82); }
+  .theme-card__num {
+    color: var(--text-faint);
+    font: 600 11px var(--font-mono);
+    letter-spacing: .08em;
+    margin-bottom: 46px;
+  }
+  .theme-card h3 { font-size: 21px; line-height: 1.15; margin-bottom: 14px; }
+  .theme-card p { color: var(--text-mute); font-size: 14px; line-height: 1.65; }
+
+  .thought-section { padding-top: 20px; padding-bottom: 96px; }
+  .thought-rule { border-top: 1px solid var(--line); margin-bottom: 58px; }
+  .thought-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: clamp(40px, 8vw, 110px);
+  }
+  .thought-grid h2 { margin-top: 0; max-width: 13ch; }
+  .thought-copy { color: var(--text-mute); font-size: 16.5px; line-height: 1.7; }
+  .thought-copy p + p { margin-top: 16px; }
+  .thought-copy ul { margin: 18px 0; padding: 0; list-style: none; }
+  .thought-copy li { position: relative; padding-left: 22px; margin: 10px 0; color: var(--text-soft); }
+  .thought-copy li::before { content: '→'; position: absolute; left: 0; color: var(--orange); }
+
+  .guide-section {
+    position: relative;
+    display: grid;
+    grid-template-columns: .78fr 1.22fr;
+    gap: 54px;
+    align-items: center;
+    padding-top: 86px;
+    padding-bottom: 110px;
+    border-top: 1px solid var(--line);
+  }
+  .guide-section__sub {
+    margin: 18px 0 28px;
+    color: var(--text-mute);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 42ch;
+  }
+  .guide-stack {
+    position: relative;
+    min-height: 510px;
+    isolation: isolate;
+  }
+  .guide-page {
+    position: absolute;
+    width: min(410px, 72%);
+    aspect-ratio: 4 / 5;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #0B1821;
+    background: #EEF3F2;
+    border: 1px solid rgba(255,255,255,.6);
+    border-radius: 5px;
+    box-shadow: 0 24px 60px rgba(0,0,0,.34);
+    transform-origin: bottom center;
+  }
+  .guide-page--1 { z-index: 3; left: 5%; top: 28px; transform: rotate(-5deg); }
+  .guide-page--2 { z-index: 2; left: 29%; top: 6px; transform: rotate(2.5deg); background: #DCEBEC; }
+  .guide-page--3 { z-index: 1; left: 49%; top: 36px; transform: rotate(7deg); background: #F5E8D6; }
+  .guide-page__top {
+    display: flex;
+    justify-content: space-between;
+    font: 700 11px var(--font-mono);
+    letter-spacing: .08em;
+  }
+  .guide-page h3 { color: #0B1821; font-size: clamp(26px, 3vw, 38px); line-height: 1.02; max-width: 8ch; }
+  .guide-page p { margin-top: 12px; color: #34454D; font-size: 13px; line-height: 1.45; max-width: 24ch; }
+  .guide-page__scribble {
+    align-self: flex-start;
+    color: #B85F14;
+    font: 700 12px var(--font-mono);
+    transform: rotate(-4deg);
+    border-bottom: 2px solid #B85F14;
+    padding-bottom: 2px;
+  }
+  .guide-index {
+    position: absolute;
+    z-index: 4;
+    right: 0;
+    bottom: 0;
+    width: min(330px, 58%);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 16px 18px;
+    background: rgba(5,15,22,.92);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    color: var(--text-dim);
+    font: 600 10px var(--font-mono);
+  }
+
+  .why-section { padding-top: 10px; padding-bottom: 92px; }
+  .why-card {
+    max-width: 1040px;
+    padding: clamp(32px, 5vw, 64px);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--teal);
+    background: rgba(12,25,38,.78);
+    border-radius: var(--r-lg);
+  }
+  .why-card h2 { max-width: 15ch; }
+  .why-copy {
+    margin-top: 28px;
+    max-width: 70ch;
+    color: var(--text-mute);
+    font-size: 16px;
+    line-height: 1.72;
+  }
+  .why-copy p + p { margin-top: 15px; }
+  .why-copy blockquote {
+    margin: 26px 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.15;
+  }
+  .why-copy .signature { color: var(--teal-light); font-weight: 700; }
+
+  .move-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    border-top: 1px solid var(--line);
+  }
+  .move-section > div { max-width: 760px; }
+  .move-section p { color: var(--text-mute); margin-top: 13px; max-width: 68ch; }
+
+  .unbound-disclaimer {
+    padding-top: 18px;
+    padding-bottom: 34px;
+    color: var(--text-faint);
+    font-size: 11.5px;
+    line-height: 1.5;
+    border-top: 1px solid rgba(30,50,67,.55);
+  }
+
+  @media (max-width: 1180px) {
+    .theme-grid { grid-template-columns: 1fr 1fr; }
+    .guide-section { grid-template-columns: .8fr 1.2fr; gap: 30px; }
+  }
+
+  @media (max-width: 900px) {
+    .unbound-hero {
+      grid-template-columns: 1fr;
+      gap: 38px;
+      padding-top: 52px;
+      padding-bottom: 68px;
+    }
+    .unbound-hero__copy { padding-top: 0; }
+    .guide-form-card { position: static; top: auto; }
+    .thought-grid,
+    .guide-section { grid-template-columns: 1fr; gap: 38px; }
+    .thought-grid h2 { max-width: 18ch; }
+    .guide-stack { min-height: 470px; margin-top: 10px; }
+    .move-section { align-items: flex-start; flex-direction: column; }
+  }
+
+  @media (max-width: 640px) {
+    .unbound-hero { padding-top: 40px; }
+    .unbound-hero h1 { font-size: 48px !important; }
+    .form-grid { grid-template-columns: 1fr; }
+    .guide-form-card { padding: 22px 18px; }
+    .theme-grid { grid-template-columns: 1fr; }
+    .theme-card { min-height: 0; }
+    .theme-card__num { margin-bottom: 24px; }
+    .guide-stack { min-height: 560px; }
+    .guide-page {
+      width: 78%;
+      padding: 22px;
+    }
+    .guide-page--1 { left: 0; top: 24px; }
+    .guide-page--2 { left: 12%; top: 52px; }
+    .guide-page--3 { left: 22%; top: 82px; }
+    .guide-index { left: 0; right: auto; bottom: 0; width: 100%; }
+    .why-card { padding: 28px 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .field-note,
+    .guide-page { transform: none !important; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var form = document.querySelector('[data-guide-form]');
+    var success = document.querySelector('[data-guide-success]');
+    if (!form || !success) return;
+
+    var started = false;
+    function track(name) {
+      try {
+        if (typeof window.gtag === 'function') window.gtag('event', name);
+        if (typeof window.plausible === 'function') window.plausible(name);
+        if (window.umami && typeof window.umami.track === 'function') window.umami.track(name);
+      } catch (_) {}
+    }
+
+    function markStarted() {
+      if (started) return;
+      started = true;
+      track('unbound_form_started');
+    }
+
+    form.addEventListener('focusin', markStarted, { once: true });
+    form.addEventListener('change', markStarted, { once: true });
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      var submit = form.querySelector('button[type=submit]');
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'SENDING…';
+      }
+
+      var body = new URLSearchParams(new FormData(form)).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      }).then(function (response) {
+        if (!response.ok) throw new Error(String(response.status));
+        form.hidden = true;
+        success.hidden = false;
+        track('unbound_field_guide_requested');
+        success.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+      }).catch(function () {
+        form.submit();
+      });
+    });
+
+    document.querySelectorAll('[data-guide-download]').forEach(function (link) {
+      link.addEventListener('click', function () { track('unbound_field_guide_downloaded'); });
+    });
+
+    document.querySelectorAll('[data-stuck-link]').forEach(function (link) {
+      link.addEventListener('click', function () { track('unbound_tell_me_whats_stuck_clicked'); });
+    });
+  })();
+</script>
