@@ -182,17 +182,14 @@ const guidePages = [
     <div class="guide-stack" aria-label="Preview of six-page field guide">
       {guidePages.slice(0, 3).map((page, i) => (
         <article class={'guide-page guide-page--' + (i + 1)}>
-          <div class="guide-page__top">
-            <span>{page[0]}</span>
-            <span>UNBOUND 2026</span>
-          </div>
-          <div>
-            <h3>{page[1]}</h3>
-            <p>{page[2]}</p>
-          </div>
-          <div class="guide-page__scribble" aria-hidden="true">
-            {i === 0 ? '→ notice what changed' : i === 1 ? 'circle the friction' : 'human / machine'}
-          </div>
+          <img
+            src={'/images/unbound-guide-page-' + (i + 1) + '.webp'}
+            alt={'Field guide page ' + page[0] + ': ' + page[1]}
+            width="857"
+            height="1109"
+            loading="lazy"
+            decoding="async"
+          />
         </article>
       ))}
       <div class="guide-index" aria-hidden="true">
@@ -480,8 +477,9 @@ const guidePages = [
   .guide-page {
     position: absolute;
     width: min(410px, 72%);
-    aspect-ratio: 4 / 5;
-    padding: 28px;
+    aspect-ratio: 612 / 792;
+    padding: 0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -492,6 +490,7 @@ const guidePages = [
     box-shadow: 0 24px 60px rgba(0,0,0,.34);
     transform-origin: bottom center;
   }
+  .guide-page img { display: block; width: 100%; height: auto; }
   .guide-page--1 { z-index: 3; left: 5%; top: 28px; transform: rotate(-5deg); }
   .guide-page--2 { z-index: 2; left: 29%; top: 6px; transform: rotate(2.5deg); background: #DCEBEC; }
   .guide-page--3 { z-index: 1; left: 49%; top: 36px; transform: rotate(7deg); background: #F5E8D6; }
@@ -609,7 +608,7 @@ const guidePages = [
     .guide-stack { min-height: 560px; }
     .guide-page {
       width: 78%;
-      padding: 22px;
+      padding: 0;
     }
     .guide-page--1 { left: 0; top: 24px; }
     .guide-page--2 { left: 12%; top: 52px; }
