@@ -30,12 +30,12 @@ const choices = [
 ];
 
 const guidePages = [
-  ['01', 'What actually changed?', 'Signal before novelty.'],
-  ['02', 'Where is the friction?', 'Start with the part that hurts.'],
-  ['03', 'What should AI own?', 'Automate the repeatable. Protect judgment.'],
-  ['04', 'Pick one move.', 'One problem. One experiment. One measure.'],
-  ['05', 'Put guardrails around it.', 'Speed still needs direction.'],
-  ['06', 'Then make something.', 'Strategy has to become work.']
+  ['01', 'What deserves to change?', 'Choose one useful creative opportunity.'],
+  ['02', 'Where does the work get stuck?', 'Find the handoff that needs attention.'],
+  ['03', 'What should AI handle?', 'Automate the repeatable. Protect judgment.'],
+  ['04', 'What would make next week easier?', 'One problem. One experiment. One measure.'],
+  ['05', 'What keeps the work on brand?', 'Clear standards and human review.'],
+  ['06', 'What will you make?', 'Strategy has to become work.']
 ];
 ---
 <Base
@@ -125,7 +125,7 @@ const guidePages = [
           <p>If your notebook currently looks like twelve strategies fighting in a parking lot, start with page 4.</p>
           <a
             class="btn btn--action"
-            href="/downloads/unbound-2026-monday-after-field-guide.pdf"
+            href="/downloads/unbound-2026-monday-after-field-guide.pdf?v=hairline-20260921"
             data-guide-download
           >DOWNLOAD THE FIELD GUIDE →</a>
           <a class="quiet-link" href="/unbound-2026-guide">READ ONLINE OR USE WITH YOUR AI →</a>
@@ -187,7 +187,7 @@ const guidePages = [
       {guidePages.slice(0, 3).map((page, i) => (
         <article class={'guide-page guide-page--' + (i + 1)}>
           <img
-            src={'/images/unbound-guide-page-' + (i + 1) + '.webp'}
+            src={'/images/unbound-guide-page-' + (i + 1) + '.webp?v=hairline-20260921'}
             alt={'Field guide page ' + page[0] + ': ' + page[1]}
             width="857"
             height="1109"
