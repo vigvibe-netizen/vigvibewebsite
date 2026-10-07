@@ -4,11 +4,12 @@ const {
   description,
   image = '/images/site-bg.png',
   schema,
+  canonical,
   exactTitle = false,
   ogTitle,
   ogDescription
 } = Astro.props;
-const url = new URL(Astro.url.pathname, Astro.site).href;
+const url = new URL(canonical ?? Astro.url.pathname, Astro.site).href;
 const full = exactTitle ? title : title + ' · VigVibe';
 ---
 <title>{full}</title>

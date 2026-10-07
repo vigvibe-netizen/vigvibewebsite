@@ -13,6 +13,16 @@ const { service } = Astro.props;
 const d = service.data;
 const { Content } = await render(service);
 
+// These five pages are served at canonical root URLs by Netlify's 200 rewrites.
+const rootServiceSlugs = new Set([
+  'presentation-designer',
+  'creative-operations-consultant',
+  'marketing-design-contractor',
+  'ai-workflow-consultant',
+  'fractional-creative-director'
+]);
+const canonical = rootServiceSlugs.has(service.id) ? `/${service.id}` : undefined;
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -31,7 +41,7 @@ const faqSchema = d.faqs.length > 0 ? {
   }))
 } : null;
 ---
-<Base title={d.seoTitle} description={d.seoDescription} schema={schema} active="Services" overlayHeader={true}>
+<Base title={d.seoTitle} description={d.seoDescription} schema={schema} canonical={canonical} active="Services" overlayHeader={true}>
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
   <PageHeader title={d.h1} eyebrow={d.eyebrow} intro={d.intro} image={d.header} />
