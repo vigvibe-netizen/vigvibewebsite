@@ -45,7 +45,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: linear-gradient(180deg, #20303B 0%, #16242E 26%, #0B1821 58%, #050F16 100%);
+  background: linear-gradient(180deg, #08142B 0%, #071324 30%, #07121E 62%, #050F16 100%);
   background-attachment: fixed;
 }
 
@@ -86,9 +86,9 @@ html::after {
 }
 html::before {
   background-image:
-    linear-gradient(90deg, rgba(9,18,25,.9) 0%, rgba(9,18,25,.62) 30%, rgba(9,18,25,.22) 58%, rgba(9,18,25,.12) 100%),
-    linear-gradient(to bottom, rgba(15,26,34,.5) 0%, rgba(9,18,25,.1) 30%, rgba(7,15,21,.66) 66%, #050F16 92%),
-    url('/images/site-bg.png');
+    linear-gradient(90deg, rgba(5,15,22,.94) 0%, rgba(5,15,22,.72) 30%, rgba(5,15,22,.20) 60%, rgba(5,15,22,.08) 100%),
+    linear-gradient(to bottom, rgba(5,15,22,.14) 0%, rgba(5,15,22,.14) 42%, rgba(5,15,22,.68) 70%, #050F16 96%),
+    url('/images/vigvibe-connected-workflow-bg.webp');
   background-size: auto, auto, 100% auto;
   background-position: center, center, center top;
   background-repeat: no-repeat, no-repeat, no-repeat;
@@ -233,6 +233,10 @@ label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .08em
 
 @media (max-width: 900px) {
   :root { --pad-x: 20px; }
+  html::before {
+    background-size: auto, auto, auto 520px;
+    background-position: center, center, 72% top;
+  }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
   /* Bands carry inline pixel heights for the desktop composition; let them
      size to their content on small screens instead of clipping. */
