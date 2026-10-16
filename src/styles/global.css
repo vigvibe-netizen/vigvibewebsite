@@ -51,7 +51,15 @@ html {
 
 body {
   margin: 0;
-  background: transparent;
+  background-color: #050F16;
+  background-image:
+    linear-gradient(90deg, rgba(5,15,22,.90) 0%, rgba(5,15,22,.64) 29%, rgba(5,15,22,.16) 58%, rgba(5,15,22,.03) 100%),
+    linear-gradient(to bottom, rgba(5,15,22,.05) 0%, rgba(5,15,22,.10) 42%, rgba(5,15,22,.70) 72%, #050F16 96%),
+    url('/images/vigvibe-connected-workflow-bg-v2.webp');
+  background-size: auto, auto, 108% auto;
+  background-position: center, center, 88% top;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed;
   position: relative;
   isolation: isolate;
   color: var(--text);
