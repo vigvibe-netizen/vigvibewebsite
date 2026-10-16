@@ -89,8 +89,8 @@ html::before {
     linear-gradient(90deg, rgba(5,15,22,.94) 0%, rgba(5,15,22,.72) 30%, rgba(5,15,22,.20) 60%, rgba(5,15,22,.08) 100%),
     linear-gradient(to bottom, rgba(5,15,22,.14) 0%, rgba(5,15,22,.14) 42%, rgba(5,15,22,.68) 70%, #050F16 96%),
     url('/images/vigvibe-connected-workflow-bg.webp');
-  background-size: auto, auto, 100% auto;
-  background-position: center, center, center top;
+  background-size: auto, auto, 118% auto;
+  background-position: center, center, 68% top;
   background-repeat: no-repeat, no-repeat, no-repeat;
 }
 html::after { background: radial-gradient(120% 90% at 10% -10%, rgba(0,178,190,.16), transparent 62%); }
@@ -234,8 +234,8 @@ label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .08em
 @media (max-width: 900px) {
   :root { --pad-x: 20px; }
   html::before {
-    background-size: auto, auto, auto 520px;
-    background-position: center, center, 72% top;
+    background-size: auto, auto, auto 560px;
+    background-position: center, center, 80% top;
   }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
   /* Bands carry inline pixel heights for the desktop composition; let them
