@@ -22,7 +22,7 @@ const p = Astro.url.pathname;
 const autoTone =
   p === '/' ? 'home'
   : p.startsWith('/work') ? 'work'
-  : p.startsWith('/services') ? 'services'
+  : p.startsWith('/services') || p.startsWith('/consulting') ? 'services'
   : p.startsWith('/downloads') ? 'downloads'
   : p.startsWith('/blog') || p.startsWith('/answers') ? 'blog'
   : p.startsWith('/about') ? 'about'

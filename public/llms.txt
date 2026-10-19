@@ -13,6 +13,7 @@ at a time. Based in Boston, working remotely across US time zones.
 ## Key pages
 - /work — selected projects by category
 - /services — engagement types
+- /consulting — consulting for creative and marketing teams: briefs, customer-focused messaging, website journeys, stakeholder reviews, brand and template systems, and practical AI workflows
 - /answers — direct answers to common questions about hiring design help and fixing workflow
 - /blog — "This week in AI…", twice a month
 - /downloads — free Claude Skills, Custom GPTs, and Gemini Gems for creative teams
